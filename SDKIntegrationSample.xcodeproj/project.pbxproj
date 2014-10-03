@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		61D3CB5FA45E490282DF4DA4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE913BB6A98473B89A5F69E /* libPods.a */; };
+		E1085FD419DF1C6900B5EA05 /* SMContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1085FD319DF1C6900B5EA05 /* SMContainerViewController.m */; };
 		E1B451F919BF728400C17F96 /* SMCustomAchievementActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B451F819BF728400C17F96 /* SMCustomAchievementActivity.m */; };
 		E1CAABCB19BA1A7D000FAB75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CAABCA19BA1A7D000FAB75 /* Foundation.framework */; };
 		E1CAABCD19BA1A7D000FAB75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CAABCC19BA1A7D000FAB75 /* CoreGraphics.framework */; };
@@ -38,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		0FE913BB6A98473B89A5F69E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1085FD219DF1C6900B5EA05 /* SMContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContainerViewController.h; sourceTree = "<group>"; };
+		E1085FD319DF1C6900B5EA05 /* SMContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMContainerViewController.m; sourceTree = "<group>"; };
 		E1B451F719BF728400C17F96 /* SMCustomAchievementActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCustomAchievementActivity.h; sourceTree = "<group>"; };
 		E1B451F819BF728400C17F96 /* SMCustomAchievementActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCustomAchievementActivity.m; sourceTree = "<group>"; };
 		E1CAABC719BA1A7D000FAB75 /* SDKIntegrationSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKIntegrationSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +130,8 @@
 				E1CAABD919BA1A7D000FAB75 /* SMAppDelegate.h */,
 				E1CAABDA19BA1A7D000FAB75 /* SMAppDelegate.m */,
 				E1CAABDC19BA1A7D000FAB75 /* Main.storyboard */,
+				E1085FD219DF1C6900B5EA05 /* SMContainerViewController.h */,
+				E1085FD319DF1C6900B5EA05 /* SMContainerViewController.m */,
 				E1CAABDF19BA1A7D000FAB75 /* SMViewController.h */,
 				E1CAABE019BA1A7D000FAB75 /* SMViewController.m */,
 				E1B451F719BF728400C17F96 /* SMCustomAchievementActivity.h */,
@@ -304,6 +309,7 @@
 				E1B451F919BF728400C17F96 /* SMCustomAchievementActivity.m in Sources */,
 				E1CAABE119BA1A7D000FAB75 /* SMViewController.m in Sources */,
 				E1CAABD719BA1A7D000FAB75 /* main.m in Sources */,
+				E1085FD419DF1C6900B5EA05 /* SMContainerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

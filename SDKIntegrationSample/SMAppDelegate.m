@@ -7,13 +7,30 @@
 //
 
 #import "SMAppDelegate.h"
-
+#import "SMContainerViewController.h"
+#import "SMViewController.h"
 @implementation SMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    SMContainerViewController * container = [self makeContainer];
+    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = container;
+    [self.window makeKeyAndVisible];
+
     return YES;
+}
+
+-(SMContainerViewController*)makeContainer {
+    UITableViewController *tvc = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+    SMViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"viewController"];
+    UINavigationController *leftNav = [[UINavigationController alloc] initWithRootViewController:tvc];
+    UINavigationController *centerNav = [[UINavigationController alloc] initWithRootViewController:vc];
+    
+    SMContainerViewController *cvc = [[SMContainerViewController alloc] initWithCenterViewController:centerNav andLeftViewController:leftNav];
+    return cvc;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

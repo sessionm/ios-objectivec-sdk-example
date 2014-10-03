@@ -9,6 +9,7 @@
 #import "SMViewController.h"
 #import "SMCustomAchievementActivity.h"
 #import "SMActivityViewController.h"
+#import "SMContainerViewController.h"
 #import <objc/runtime.h>
 
 @interface SMViewController ()
@@ -36,6 +37,7 @@ static IMP __prefers_Status_Bar_Hidden;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"SessionM SDK Sample";
     // Do any additional setup after loading the view, typically from a nib.
     
     // Set the delegate so we get notified from the SDK
@@ -166,7 +168,7 @@ static IMP __prefers_Status_Bar_Hidden;
     __prefers_Status_Bar_Hidden = method_setImplementation(m2, (IMP)_swizzle_prefersStatusBarHidden);
 
     // This code overwrites the preferredStatusBarStyle method calls on UINavigationController with our _swizzle_preferredStatusBarStyle
-    Method m3 = class_getInstanceMethod([UINavigationController class], @selector(preferredStatusBarStyle));
+    Method m3 = class_getInstanceMethod([SMContainerViewController class], @selector(preferredStatusBarStyle));
     __preferred_Status_Bar_Style = method_setImplementation(m3, (IMP)_swizzle_preferredStatusBarStyle);
 
     // Code to push SMActivityViewController onto nav stack
@@ -182,7 +184,8 @@ static IMP __prefers_Status_Bar_Hidden;
     [self updateUI:[SessionM sharedInstance].sessionState];
 }
 
-#pragma mark - Swizzled Methods
+#pragma mark - Method Swizzling
+
 // Adds functionality to standard [SMActivityViewController viewWillAppear:animated] method
 // Sets up nav bar custom appearance.
 void _swizzle_viewWillAppear(id self, SEL _cmd, BOOL animated)
@@ -222,7 +225,7 @@ void _swizzle_viewWillAppear(id self, SEL _cmd, BOOL animated)
 // Overwrites UINavigationController preferredStatusBarStyle to give us control of style
 // when transitioning to and from SMActivityViewController
 UIStatusBarStyle _swizzle_preferredStatusBarStyle(id self, SEL _cmd) {
-    if ([[((UINavigationController*)self).viewControllers lastObject] isKindOfClass:[SMActivityViewController class]]) {
+    if ([[((UINavigationController*)((SMContainerViewController*)self).centerViewController).viewControllers lastObject] isKindOfClass:[SMActivityViewController class]]) {
         return UIStatusBarStyleLightContent;
     }
     return UIStatusBarStyleDefault;
