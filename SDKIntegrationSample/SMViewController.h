@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *bigPurpleButton;
 @property (nonatomic, weak) IBOutlet UIButton *bigGreenButton;
 @property (nonatomic, weak) IBOutlet UIButton *bigBlueButton;
+@property (weak, nonatomic) IBOutlet UIButton *bigLightBlueButton;
 @property (nonatomic, weak) IBOutlet UISwitch *memberSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *achievementCountLabel;
 @property (nonatomic, strong) SMCustomAchievementActivity *customAchievementActivity;
@@ -26,9 +27,10 @@
 - (IBAction)purpleButtonAction:(id)sender;
 - (IBAction)greenButtonAction:(id)sender;
 - (IBAction)blueButtonAction:(id)sender;
+- (IBAction)lightBlueButtonAction:(id)sender;
 - (IBAction)memberSwitchAction:(id)sender;
 
-- (void)updateButton:(SessionMState)state;
+- (void)updateUI:(SessionMState)state;
 - (void)sessionM:(SessionM *)session didTransitionToState:(SessionMState)state;
 
 @end

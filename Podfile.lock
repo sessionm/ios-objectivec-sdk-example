@@ -1,10 +1,10 @@
 PODS:
-  - SessionM (1.11.7)
+  - SessionM (1.12.5)
 
 DEPENDENCIES:
   - SessionM
 
 SPEC CHECKSUMS:
-  SessionM: e5ad539b2b7f149573907695851e917b0fff91e8
+  SessionM: 69a3a12e4b580631c5eb7607859cf7d4259ee8ff
 
 COCOAPODS: 0.33.1

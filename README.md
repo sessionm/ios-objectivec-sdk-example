@@ -6,6 +6,4 @@ This project takes advantage of cocoapods (http://guides.cocoapods.org/using/get
 
 If you do not use cocoapods in your project, download the SessionM SDK (http://www.sessionm.com/documentation/downloads.php), place the SessionM-SDK folder in your project, and be sure to link against the following frameworks: AVFoundation, EventKit, EventKitUI, CoreData, CoreMedia, MediaPlayer, AdSupport and StoreKit frameworks.
 
-LICENSE: MIT
-
 For more help see http://www.sessionm.com/documentation/index.php
