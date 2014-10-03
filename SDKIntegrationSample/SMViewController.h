@@ -10,6 +10,7 @@
 #import "SessionM.h"
 #import "SMPortalButton.h"
 #import "SMCustomAchievementActivity.h"
+#import "SMContainerViewController.h"
 
 @interface SMViewController : UIViewController <SessionMDelegate, UIAlertViewDelegate> {
 }
@@ -18,16 +19,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *bigPurpleButton;
 @property (nonatomic, weak) IBOutlet UIButton *bigGreenButton;
 @property (nonatomic, weak) IBOutlet UIButton *bigBlueButton;
-@property (weak, nonatomic) IBOutlet UIButton *bigLightBlueButton;
 @property (nonatomic, weak) IBOutlet UISwitch *memberSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *achievementCountLabel;
 @property (nonatomic, strong) SMCustomAchievementActivity *customAchievementActivity;
-
+@property (nonatomic, strong) SMContainerViewController *containerVC;
 - (IBAction)redButtonAction:(id)sender;
 - (IBAction)purpleButtonAction:(id)sender;
 - (IBAction)greenButtonAction:(id)sender;
 - (IBAction)blueButtonAction:(id)sender;
-- (IBAction)lightBlueButtonAction:(id)sender;
 - (IBAction)memberSwitchAction:(id)sender;
 
 - (void)updateUI:(SessionMState)state;

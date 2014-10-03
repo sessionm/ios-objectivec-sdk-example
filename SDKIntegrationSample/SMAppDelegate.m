@@ -9,6 +9,8 @@
 #import "SMAppDelegate.h"
 #import "SMContainerViewController.h"
 #import "SMViewController.h"
+#import "SMLeftViewController.h"
+
 @implementation SMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -24,12 +26,15 @@
 }
 
 -(SMContainerViewController*)makeContainer {
-    UITableViewController *tvc = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+    SMLeftViewController *lvc = [[SMLeftViewController alloc] init];
+    UINavigationController *leftNav = [[UINavigationController alloc] initWithRootViewController:lvc];
+
     SMViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"viewController"];
-    UINavigationController *leftNav = [[UINavigationController alloc] initWithRootViewController:tvc];
     UINavigationController *centerNav = [[UINavigationController alloc] initWithRootViewController:vc];
     
     SMContainerViewController *cvc = [[SMContainerViewController alloc] initWithCenterViewController:centerNav andLeftViewController:leftNav];
+    lvc.containerVC = cvc;
+    vc.containerVC = cvc;
     return cvc;
 }
 							
