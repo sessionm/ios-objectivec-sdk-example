@@ -84,7 +84,7 @@
     SMPortalButton *portalButton=[SMPortalButton buttonWithType:UIButtonTypeCustom];
     [portalButton.button setImage:[UIImage imageNamed:@"gift-icon"] forState:UIControlStateNormal];
     [portalButton.button setImage:[UIImage imageNamed:@"gift-icon-selected"] forState:UIControlStateHighlighted];
-    portalButton.frame = CGRectMake(20,100,portalButton.button.imageView.image.size.width,portalButton.button.imageView.image.size.height);
+    portalButton.frame = CGRectMake(20,60,portalButton.button.imageView.image.size.width,portalButton.button.imageView.image.size.height);
     portalButton.badgePosition = SMPortalButtonBadgePositionCustom;
     portalButton.badge.font = [UIFont fontWithName:@"Helvetica-Neue-Light" size:16];
     [portalButton layoutBadge];
@@ -183,7 +183,9 @@
     // but any custom view could be used, provided the notifyPresented and
     // notifyDismissed methods are called. See SMCustomAchievementActivity.m.
     self.customAchievementActivity = [[SMCustomAchievementActivity alloc] initWithAchievmentData:achievementData];
+    self.customAchievementActivity.viewToPresentIn = self.view;
     [self.customAchievementActivity present];
+    ((UIButton*)sender).hidden = YES;
 }
 
 // Switch shows example of how to toggle a user

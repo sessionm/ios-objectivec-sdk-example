@@ -9,7 +9,7 @@
 #import "SessionM.h"
 
 @interface SMCustomAchievementActivity : SMAchievementActivity
-@property (nonatomic, retain) UIAlertView *alertView;
+@property (nonatomic, strong) UIView *viewToPresentIn;
 // presents achievement alert
 - (void)present;
 // dismisses achievement alert
