@@ -14,6 +14,7 @@
 
 @interface SMViewController () {
     SMHamburger *smBurger;
+    UIView *welcomeView;
 }
 @end
 
@@ -22,7 +23,7 @@
 #define YOUR_APP_ID @"7a6cf3f9d1a2016efd1bb5b3a1193a22785480cb"
 #define YOUR_TEST_ACTION @"red_button_tapped"
 #define YOUR_TEST_ACTION2 @"purple_button_tapped"
-
+#define kIntroSeen @"com.sessionm.SessionM.introSeen"
 @implementation SMViewController
 
 -(void)viewDidAppear:(BOOL)animated  {
@@ -75,7 +76,7 @@
     
     // Set the delegate so we get notified from the SDK
     [[SessionM sharedInstance] setDelegate:self];
-    
+    [[SessionM sharedInstance] setLogLevel:SMLogLevelDebug];
     // Init the SDK
     SMStart(YOUR_APP_ID);
     
@@ -93,24 +94,80 @@
     // Manually Enable / Disable Big Green Portal Button
     [self.bigGreenButton setTitle: @"Offline" forState: UIControlStateDisabled];
     [self updateUI:[SessionM sharedInstance].sessionState];
-}
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSessionMWelcomeDelayed:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self showSessionMWelcome];
+    });
 
-// Toggle showing left menu on hamburger tap.
--(void)hamburgerMenuButtonPressed:(UIBarButtonItem*)item {
-    if (self.containerVC.menuState == MFSideMenuStateLeftMenuOpen) {
-        [self.containerVC setMenuState:MFSideMenuStateClosed];
-    } else {
-        // Ensure SMLeftViewController's tableView is reloaded when opening to ensure proper badge count.
-        [((SMLeftViewController*)((UINavigationController*)self.containerVC.leftMenuViewController).viewControllers[0]).tableView reloadData];
-        [((SMLeftViewController*)((UINavigationController*)self.containerVC.leftMenuViewController).viewControllers[0]).tableView setContentOffset:CGPointZero];
-        [self.containerVC setMenuState:MFSideMenuStateLeftMenuOpen];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Welcome Splash
+
+-(void)showSessionMWelcomeDelayed:(NSNotification*)notif {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self showSessionMWelcome];
+    });
+}
+
+-(void)showSessionMWelcome {
+    SessionM *smSessionInfo = [SessionM sharedInstance];
+    
+    if(smSessionInfo ) {
+        SessionMState *smSessionState = (SessionMState *) smSessionInfo.sessionState;
+        NSUserDefaults *smDefaults = [NSUserDefaults standardUserDefaults];
+        if(![smDefaults boolForKey:kIntroSeen] &&   // if the user has not see this yet
+           smSessionState != (SessionMState *)SessionMServiceUnavailable &&  // the service is available
+           smSessionInfo.user.isOptedOut == NO && // the user is opted into rewards
+           smSessionInfo.displayInAppWelcomeFlow /*correct time to show welcome flow*/) {
+            [smDefaults setBool:YES forKey:kIntroSeen];
+            [smDefaults synchronize];
+        
+            welcomeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.navigationController.view.frame.size.width, self.navigationController.view.frame.size.height)];
+            welcomeView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
+        
+            UIView *centerSplashView = [[UIView alloc] initWithFrame:CGRectMake(15, (welcomeView.frame.size.height - 200)/2, welcomeView.frame.size.width-30, 200)];
+            centerSplashView.backgroundColor = [UIColor whiteColor];
+            [welcomeView addSubview:centerSplashView];
+        
+            UILabel *label = [UILabel new];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.text = @"Welcome to SDKIntegrationSample\n\nThis is an example of a welcome splash you could use to inform users of mPoints, how to get achievements, and inform them about rewards.\n\nTap anywhere to continue.";
+            label.numberOfLines = 0;
+            label.frame = CGRectMake(0,0, centerSplashView.frame.size.width-10, 0);
+            [label sizeToFit];
+            [centerSplashView addSubview:label];
+            label.frame = CGRectMake((centerSplashView.frame.size.width - label.frame.size.width)/2.0 , (centerSplashView.frame.size.height - label.frame.size.height)/2.0 , label.frame.size.width, label.frame.size.height);
+            
+            welcomeView.alpha = 0;
+                [self.navigationController.view addSubview:welcomeView];
+            [UIView animateKeyframesWithDuration:0.5 delay:0 options:0 animations:^{
+                welcomeView.alpha = 1;
+            } completion:^(BOOL finished) {
+                UITapGestureRecognizer *smWelcomeRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSMWelcome:)];
+                [welcomeView addGestureRecognizer:smWelcomeRecognizer];
+            }];
+        }
+    }
+
+}
+
+-(void)hideSMWelcome:(UITapGestureRecognizer*)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateRecognized) {
+        [UIView animateKeyframesWithDuration:0.5 delay:0 options:0 animations:^{
+            welcomeView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [welcomeView removeFromSuperview];
+            welcomeView = nil;
+        }];
+    }
+}
+
 
 #pragma mark - Update UI
 
@@ -196,6 +253,17 @@
     [self updateUI:[SessionM sharedInstance].sessionState];
 }
 
+// Toggle showing left menu on hamburger tap.
+-(void)hamburgerMenuButtonPressed:(UIBarButtonItem*)item {
+    if (self.containerVC.menuState == MFSideMenuStateLeftMenuOpen) {
+        [self.containerVC setMenuState:MFSideMenuStateClosed];
+    } else {
+        // Ensure SMLeftViewController's tableView is reloaded when opening to ensure proper badge count.
+        [((SMLeftViewController*)((UINavigationController*)self.containerVC.leftMenuViewController).viewControllers[0]).tableView reloadData];
+        [((SMLeftViewController*)((UINavigationController*)self.containerVC.leftMenuViewController).viewControllers[0]).tableView setContentOffset:CGPointZero];
+        [self.containerVC setMenuState:MFSideMenuStateLeftMenuOpen];
+    }
+}
 
 
 #pragma mark - SMSessionDelegate
