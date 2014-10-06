@@ -21,7 +21,7 @@
 
 // See https://developer.sessionm.com/get_started
 // to get your app ID as well as setup actions and achievements.
-#define YOUR_APP_ID @"7a6cf3f9d1a2016efd1bb5b3a1193a22785480cb"
+#define YOUR_APP_ID @"YOUR_KEY"
 #define YOUR_TEST_ACTION @"red_button_tapped"
 #define YOUR_TEST_ACTION2 @"purple_button_tapped"
 #define kIntroSeen @"com.sessionm.SessionM.introSeen"
