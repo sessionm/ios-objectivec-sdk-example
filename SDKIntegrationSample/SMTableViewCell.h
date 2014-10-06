@@ -1,5 +1,5 @@
 //
-//  SessionMUITableViewCell.h
+//  SMTableViewCell.h
 //  TMZ
 //
 //  Created by Nachiket Gadre on 4/24/14.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SessionM.h"
 
-@interface SessionMUITableViewCell  : UITableViewCell
+@interface SMTableViewCell  : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UISwitch *switchMPoints;
 @property (strong, nonatomic) IBOutlet UILabel* unclaimedAchievementsLabel;

@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		61D3CB5FA45E490282DF4DA4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE913BB6A98473B89A5F69E /* libPods.a */; };
 		E1085FD419DF1C6900B5EA05 /* SMContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1085FD319DF1C6900B5EA05 /* SMContainerViewController.m */; };
-		E1085FD819DF242B00B5EA05 /* SessionMUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1085FD619DF242B00B5EA05 /* SessionMUITableViewCell.m */; };
-		E1085FD919DF242B00B5EA05 /* SessionMUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1085FD719DF242B00B5EA05 /* SessionMUITableViewCell.xib */; };
+		E1085FD819DF242B00B5EA05 /* SMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E1085FD619DF242B00B5EA05 /* SMTableViewCell.m */; };
+		E1085FD919DF242B00B5EA05 /* SMTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1085FD719DF242B00B5EA05 /* SMTableViewCell.xib */; };
 		E1085FDF19DF258A00B5EA05 /* SMLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1085FDE19DF258A00B5EA05 /* SMLeftViewController.m */; };
+		E1085FE319DF305B00B5EA05 /* SMHamburger.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1085FE019DF305B00B5EA05 /* SMHamburger.xib */; };
+		E1085FE419DF305B00B5EA05 /* SMHamburger.m in Sources */ = {isa = PBXBuildFile; fileRef = E1085FE219DF305B00B5EA05 /* SMHamburger.m */; };
 		E1B451F919BF728400C17F96 /* SMCustomAchievementActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E1B451F819BF728400C17F96 /* SMCustomAchievementActivity.m */; };
 		E1CAABCB19BA1A7D000FAB75 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CAABCA19BA1A7D000FAB75 /* Foundation.framework */; };
 		E1CAABCD19BA1A7D000FAB75 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1CAABCC19BA1A7D000FAB75 /* CoreGraphics.framework */; };
@@ -44,11 +46,14 @@
 		0FE913BB6A98473B89A5F69E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1085FD219DF1C6900B5EA05 /* SMContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMContainerViewController.h; sourceTree = "<group>"; };
 		E1085FD319DF1C6900B5EA05 /* SMContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMContainerViewController.m; sourceTree = "<group>"; };
-		E1085FD519DF242B00B5EA05 /* SessionMUITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionMUITableViewCell.h; sourceTree = "<group>"; };
-		E1085FD619DF242B00B5EA05 /* SessionMUITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionMUITableViewCell.m; sourceTree = "<group>"; };
-		E1085FD719DF242B00B5EA05 /* SessionMUITableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionMUITableViewCell.xib; sourceTree = "<group>"; };
+		E1085FD519DF242B00B5EA05 /* SMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTableViewCell.h; sourceTree = "<group>"; };
+		E1085FD619DF242B00B5EA05 /* SMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTableViewCell.m; sourceTree = "<group>"; };
+		E1085FD719DF242B00B5EA05 /* SMTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMTableViewCell.xib; sourceTree = "<group>"; };
 		E1085FDD19DF258A00B5EA05 /* SMLeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMLeftViewController.h; sourceTree = "<group>"; };
 		E1085FDE19DF258A00B5EA05 /* SMLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMLeftViewController.m; sourceTree = "<group>"; };
+		E1085FE019DF305B00B5EA05 /* SMHamburger.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMHamburger.xib; sourceTree = "<group>"; };
+		E1085FE119DF305B00B5EA05 /* SMHamburger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMHamburger.h; sourceTree = "<group>"; };
+		E1085FE219DF305B00B5EA05 /* SMHamburger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMHamburger.m; sourceTree = "<group>"; };
 		E1B451F719BF728400C17F96 /* SMCustomAchievementActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMCustomAchievementActivity.h; sourceTree = "<group>"; };
 		E1B451F819BF728400C17F96 /* SMCustomAchievementActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMCustomAchievementActivity.m; sourceTree = "<group>"; };
 		E1CAABC719BA1A7D000FAB75 /* SDKIntegrationSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SDKIntegrationSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,9 +151,12 @@
 				E1B451F819BF728400C17F96 /* SMCustomAchievementActivity.m */,
 				E1085FDD19DF258A00B5EA05 /* SMLeftViewController.h */,
 				E1085FDE19DF258A00B5EA05 /* SMLeftViewController.m */,
-				E1085FD519DF242B00B5EA05 /* SessionMUITableViewCell.h */,
-				E1085FD619DF242B00B5EA05 /* SessionMUITableViewCell.m */,
-				E1085FD719DF242B00B5EA05 /* SessionMUITableViewCell.xib */,
+				E1085FD519DF242B00B5EA05 /* SMTableViewCell.h */,
+				E1085FD619DF242B00B5EA05 /* SMTableViewCell.m */,
+				E1085FD719DF242B00B5EA05 /* SMTableViewCell.xib */,
+				E1085FE119DF305B00B5EA05 /* SMHamburger.h */,
+				E1085FE219DF305B00B5EA05 /* SMHamburger.m */,
+				E1085FE019DF305B00B5EA05 /* SMHamburger.xib */,
 				E1CAABE219BA1A7D000FAB75 /* Images.xcassets */,
 				E1CAABD119BA1A7D000FAB75 /* Supporting Files */,
 			);
@@ -264,7 +272,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1CAABE319BA1A7D000FAB75 /* Images.xcassets in Resources */,
-				E1085FD919DF242B00B5EA05 /* SessionMUITableViewCell.xib in Resources */,
+				E1085FD919DF242B00B5EA05 /* SMTableViewCell.xib in Resources */,
+				E1085FE319DF305B00B5EA05 /* SMHamburger.xib in Resources */,
 				E1CAABD519BA1A7D000FAB75 /* InfoPlist.strings in Resources */,
 				E1CAAC0019BA1A86000FAB75 /* Podfile in Resources */,
 				E1CAABDE19BA1A7D000FAB75 /* Main.storyboard in Resources */,
@@ -319,10 +328,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1085FD819DF242B00B5EA05 /* SessionMUITableViewCell.m in Sources */,
+				E1085FD819DF242B00B5EA05 /* SMTableViewCell.m in Sources */,
 				E1085FDF19DF258A00B5EA05 /* SMLeftViewController.m in Sources */,
 				E1CAABDB19BA1A7D000FAB75 /* SMAppDelegate.m in Sources */,
 				E1B451F919BF728400C17F96 /* SMCustomAchievementActivity.m in Sources */,
+				E1085FE419DF305B00B5EA05 /* SMHamburger.m in Sources */,
 				E1CAABE119BA1A7D000FAB75 /* SMViewController.m in Sources */,
 				E1CAABD719BA1A7D000FAB75 /* main.m in Sources */,
 				E1085FD419DF1C6900B5EA05 /* SMContainerViewController.m in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #import "SMLeftViewController.h"
-#import "SessionMUITableViewCell.h"
+#import "SMTableViewCell.h"
 #import "SMContainerViewController.h"
 #import "SMActivityViewController.h"
 #import <objc/runtime.h>
@@ -18,12 +18,30 @@
 
 @implementation SMLeftViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    
+    // Sets up UITableView
+    CGRect frame = CGRectMake(0, self.view.frame.size.height/2 - 22.5, self.view.frame.size.width, 46);
+    self.tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
     [self.view addSubview:self.tableView];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.scrollEnabled = NO;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    self.view.backgroundColor = self.tableView.backgroundColor = [UIColor colorWithRed:0.192 green:0.192 blue:0.192 alpha:1];
+    
+    UIView *borderTopView = [[UIView alloc] initWithFrame:CGRectMake(15, self.tableView.frame.origin.y-1, self.containerVC.leftMenuWidth-30, 1)];
+    UIView *borderBottomView = [[UIView alloc] initWithFrame:CGRectMake(15, self.tableView.frame.origin.y + self.tableView.frame.size.height, self.containerVC.leftMenuWidth-30, 1)];
+    borderTopView.backgroundColor = borderBottomView.backgroundColor = [UIColor colorWithRed:0.153 green:0.153 blue:0.153 alpha:1];
+    
+    [self.view addSubview:borderTopView];
+    [self.view addSubview:borderBottomView];
     
     // Code to overwrite what method is called when SMActivityViewController would normally call viewWillAppear:
     // We force it to instead call our _swizzle_viewWillAppear method
@@ -63,15 +81,16 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SessionMUITableViewCell *cell = (SessionMUITableViewCell*)[tableView dequeueReusableCellWithIdentifier:nil];
+    SMTableViewCell *cell = (SMTableViewCell*)[tableView dequeueReusableCellWithIdentifier:nil];
     
     if(cell == nil)
     {
         NSLog(@"Found Rewards");
-        NSArray *cells = [[NSBundle mainBundle] loadNibNamed:@"SessionMUITableViewCell" owner:self options:nil];
+        NSArray *cells = [[NSBundle mainBundle] loadNibNamed:@"SMTableViewCell" owner:self options:nil];
         cell = cells.lastObject;
         [cell prepareForReuse];
-        cell.textLabel.text =  @"SessionM Rewards";
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.text =  @"Rewards";
         [cell handleDisplay];
         return cell;
     }
@@ -128,7 +147,6 @@ void _swizzle_viewWillAppear(id self, SEL _cmd, BOOL animated)
     
     ((UIViewController*)self).navigationController.navigationBar.tintColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0];
     [((UIViewController*)self).navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    ((UIViewController*)self).navigationController.navigationBar.hidden = NO;
     
     UIImage *logoImage = [UIImage imageNamed:@"logo"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:logoImage];

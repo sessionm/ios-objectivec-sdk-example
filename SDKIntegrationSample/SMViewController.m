@@ -9,9 +9,12 @@
 #import "SMViewController.h"
 #import "SMCustomAchievementActivity.h"
 #import "SMActivityViewController.h"
+#import "SMLeftViewController.h"
+#import "SMHamburger.h"
 
-@interface SMViewController ()
-
+@interface SMViewController () {
+    SMHamburger *smBurger;
+}
 @end
 
 // See https://developer.sessionm.com/get_started
@@ -22,11 +25,47 @@
 
 @implementation SMViewController
 
--(void)viewWillAppear:(BOOL)animated {
-    ((UIViewController*)self).navigationController.navigationBar.tintColor = nil;
-    [((UIViewController*)self).navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    ((UIViewController*)self).navigationItem.titleView = nil;
+-(void)viewDidAppear:(BOOL)animated  {
+    [smBurger.view removeFromSuperview];
+    smBurger = [SMHamburger new];
+    smBurger.view.frame = CGRectMake(65, 40, smBurger.view.frame.size.width, smBurger.view.frame.size.height);
+    [self.navigationController.view addSubview: smBurger.view];
+    [smBurger animate];
     [self.containerVC setPanMode:MFSideMenuPanModeDefault];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [smBurger.view removeFromSuperview];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    //Stylize nav bar
+    CGRect rect = CGRectMake(0.0f, 0.0f, ((UIViewController*)self).navigationController.navigationBar.frame.size.width, 64);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:0.376 green:0.698 blue:0.059 alpha:1] CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    ((UIViewController*)self).navigationController.navigationBar.tintColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1.0];
+    [((UIViewController*)self).navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    
+    UIImage *logoImage = [UIImage imageNamed:@"logoWhite"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:logoImage];
+    ((UIViewController*)self).navigationItem.titleView = imageView;
+    
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+    
+    // Add hamburger bar button item
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"hamburger"]
+                                                                                                  style:UIBarButtonItemStyleBordered
+                                                                                                 target:self
+                                                                                                 action:@selector(hamburgerMenuButtonPressed:)];
 }
 
 - (void)viewDidLoad {
@@ -42,17 +81,30 @@
     
     // Create SMPortalButton - By using the SMPortalButton class, the button's tap
     // target is automagically setup for you. Just tap to open SessionM portal.
-    SMPortalButton *portalButton=[SMPortalButton buttonWithType:UIButtonTypeSystem];
-    [portalButton.button setTitle:@"Portal Button" forState:UIControlStateNormal];
-    portalButton.frame = CGRectMake((self.view.frame.size.width-100)/2, self.bigRedButton.frame.origin.y - 40, 100, 30);
-    portalButton.layer.cornerRadius = 4;
-    portalButton.layer.borderColor = [UIColor blackColor].CGColor;
-    portalButton.layer.borderWidth = 1;
+    SMPortalButton *portalButton=[SMPortalButton buttonWithType:UIButtonTypeCustom];
+    [portalButton.button setImage:[UIImage imageNamed:@"gift-icon"] forState:UIControlStateNormal];
+    [portalButton.button setImage:[UIImage imageNamed:@"gift-icon-selected"] forState:UIControlStateHighlighted];
+    portalButton.frame = CGRectMake(20,100,portalButton.button.imageView.image.size.width,portalButton.button.imageView.image.size.height);
+    portalButton.badgePosition = SMPortalButtonBadgePositionCustom;
+    portalButton.badge.font = [UIFont fontWithName:@"Helvetica-Neue-Light" size:16];
+    [portalButton layoutBadge];
     [self.view addSubview:portalButton];
     
     // Manually Enable / Disable Big Green Portal Button
     [self.bigGreenButton setTitle: @"Offline" forState: UIControlStateDisabled];
     [self updateUI:[SessionM sharedInstance].sessionState];
+}
+
+// Toggle showing left menu on hamburger tap.
+-(void)hamburgerMenuButtonPressed:(UIBarButtonItem*)item {
+    if (self.containerVC.menuState == MFSideMenuStateLeftMenuOpen) {
+        [self.containerVC setMenuState:MFSideMenuStateClosed];
+    } else {
+        // Ensure SMLeftViewController's tableView is reloaded when opening to ensure proper badge count.
+        [((SMLeftViewController*)((UINavigationController*)self.containerVC.leftMenuViewController).viewControllers[0]).tableView reloadData];
+        [((SMLeftViewController*)((UINavigationController*)self.containerVC.leftMenuViewController).viewControllers[0]).tableView setContentOffset:CGPointZero];
+        [self.containerVC setMenuState:MFSideMenuStateLeftMenuOpen];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,15 +143,7 @@
         self.bigBlueButton.hidden = YES;
     }
     
-    // Example of tracking number of unclaimedAchievements on user
-    SMUser *user = [SessionM sharedInstance].user;
-    NSString *badgeValue = user.unclaimedAchievementCount > 0 ? [NSString stringWithFormat:@"%lu", (unsigned long)user.unclaimedAchievementCount] : nil;
-    self.achievementCountLabel.text = badgeValue;
-    if ([badgeValue integerValue] == 0) {
-        self.achievementCountLabel.hidden = YES;
-    } else {
-        self.achievementCountLabel.hidden = NO;
-    }
+    [smBurger update];
 }
 
 

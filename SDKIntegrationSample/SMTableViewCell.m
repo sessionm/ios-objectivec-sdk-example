@@ -1,15 +1,15 @@
 //
-//  SessionMUITableViewCell.m
+//  SMTableViewCell.m
 //  TMZ
 //
 //  Created by Nachiket Gadre on 4/24/14.
 //  Copyright (c) 2014 SessionM. All rights reserved.
 //
 
-#import "SessionMUITableViewCell.h"
+#import "SMTableViewCell.h"
 #import "SessionM.h"
 
-@implementation SessionMUITableViewCell
+@implementation SMTableViewCell
 
 @synthesize switchMPoints;
 @synthesize unclaimedAchievementsLabel;
@@ -17,6 +17,16 @@
 - (void)prepareForReuse
 {
     [super prepareForReuse];
+}
+
+
+-(void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        self.contentView.backgroundColor = [UIColor colorWithRed:0.292 green:0.292 blue:0.292 alpha:1];
+    } else {
+        self.contentView.backgroundColor = [UIColor colorWithRed:0.192 green:0.192 blue:0.192 alpha:1];
+    }
 }
 
 - (IBAction)switchHandle:(id)sender {
