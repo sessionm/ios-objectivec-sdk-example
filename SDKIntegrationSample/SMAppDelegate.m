@@ -65,4 +65,21 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+// Methods to handle url support for SessionM.
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(handleIncomingURL:) userInfo:url repeats:NO];
+
+    return YES;
+}
+
+-(void)handleIncomingURL:(NSTimer*)userInfo {
+    NSURL* url = (NSURL*)userInfo.userInfo;
+    NSString *urlString = [[url absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    // SessionM scheme should be sessionmYourAppId as seen in project settings.  If match, pass to [[SessionM sharedInstance] handleUrl:]
+    if ([urlString rangeOfString:@"sessionm7a6cf3f9d1a2016efd1bb5b3a1193a22785480cb://portal"].location != NSNotFound) {
+        [[SessionM sharedInstance] handleURL:url];
+    }
+}
+
 @end
