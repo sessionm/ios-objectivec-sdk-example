@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 sessionm. All rights reserved.
 //
 
+#import "SMAppDelegate.h"
 #import "SMViewController.h"
 #import "SMCustomAchievementActivity.h"
 #import "SMActivityViewController.h"
@@ -25,6 +26,42 @@
 #define YOUR_TEST_ACTION2 @"purple_button_tapped"
 #define kIntroSeen @"com.sessionm.SessionM.introSeen"
 @implementation SMViewController
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"SessionM SDK Sample";
+    // Do any additional setup after loading the view, typically from a nib.
+    
+    // Set the delegate so we get notified from the SDK
+    [[SessionM sharedInstance] setDelegate:self];
+    // Init the SDK
+    SMStart(YOUR_APP_ID);
+    
+    // Create SMPortalButton - By using the SMPortalButton class, the button's tap
+    // target is automagically setup for you. Just tap to open SessionM portal.
+    SMPortalButton *portalButton=[SMPortalButton buttonWithType:UIButtonTypeCustom];
+    [portalButton.button setImage:[UIImage imageNamed:@"gift-icon"] forState:UIControlStateNormal];
+    [portalButton.button setImage:[UIImage imageNamed:@"gift-icon-selected"] forState:UIControlStateHighlighted];
+    portalButton.frame = CGRectMake(20,60,portalButton.button.imageView.image.size.width,portalButton.button.imageView.image.size.height);
+    portalButton.badgePosition = SMPortalButtonBadgePositionCustom;
+    portalButton.badge.font = [UIFont fontWithName:@"Helvetica-Neue-Light" size:16];
+    [portalButton layoutBadge];
+    [self.view addSubview:portalButton];
+    
+    // Manually Enable / Disable Big Green Portal Button
+    [self.bigGreenButton setTitle: @"Offline" forState: UIControlStateDisabled];
+    [self updateUI:[SessionM sharedInstance].sessionState];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSessionMWelcomeDelayed:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self showSessionMWelcome];
+    });
+}
 
 -(void)viewDidAppear:(BOOL)animated  {
     [smBurger.view removeFromSuperview];
@@ -69,43 +106,6 @@
                                                                                                  action:@selector(hamburgerMenuButtonPressed:)];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"SessionM SDK Sample";
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    // Set the delegate so we get notified from the SDK
-    [[SessionM sharedInstance] setDelegate:self];
-    [[SessionM sharedInstance] setLogLevel:SMLogLevelDebug];
-    // Init the SDK
-    SMStart(YOUR_APP_ID);
-    
-    // Create SMPortalButton - By using the SMPortalButton class, the button's tap
-    // target is automagically setup for you. Just tap to open SessionM portal.
-    SMPortalButton *portalButton=[SMPortalButton buttonWithType:UIButtonTypeCustom];
-    [portalButton.button setImage:[UIImage imageNamed:@"gift-icon"] forState:UIControlStateNormal];
-    [portalButton.button setImage:[UIImage imageNamed:@"gift-icon-selected"] forState:UIControlStateHighlighted];
-    portalButton.frame = CGRectMake(20,60,portalButton.button.imageView.image.size.width,portalButton.button.imageView.image.size.height);
-    portalButton.badgePosition = SMPortalButtonBadgePositionCustom;
-    portalButton.badge.font = [UIFont fontWithName:@"Helvetica-Neue-Light" size:16];
-    [portalButton layoutBadge];
-    [self.view addSubview:portalButton];
-    
-    // Manually Enable / Disable Big Green Portal Button
-    [self.bigGreenButton setTitle: @"Offline" forState: UIControlStateDisabled];
-    [self updateUI:[SessionM sharedInstance].sessionState];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSessionMWelcomeDelayed:) name:UIApplicationWillEnterForegroundNotification object:nil];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self showSessionMWelcome];
-    });
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Welcome Splash
 
@@ -271,6 +271,13 @@
 // Notifies about SessionM state transition.
 - (void)sessionM: (SessionM *)session didTransitionToState: (SessionMState)state {
     [self updateUI:state];
+    if (state == SessionMStateStartedOnline) {
+        SMAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        if (appDelegate.pendingURL) {
+            [[SessionM sharedInstance] handleURL:appDelegate.pendingURL];
+            appDelegate.pendingURL = nil;
+        }
+    }
 //    NSLog(@"%u",state);
 }
 

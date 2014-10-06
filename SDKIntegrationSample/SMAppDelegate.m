@@ -66,20 +66,17 @@
 }
 
 
-// Methods to handle url support for SessionM.
+// Methods to handle url support for SessionM. The scheme your app should register for to work with SessionM SDK is sessionmYouAppKey
+// I.e. the url scheme for this app is sessionm7a6cf3f9d1a2016efd1bb5b3a1193a22785480cb
+// Try texting sessionm7a6cf3f9d1a2016efd1bb5b3a1193a22785480cb://portal device with this app installed to test this method.
+// It should result it presenting the SessionM Portal in a modal.
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(handleIncomingURL:) userInfo:url repeats:NO];
-
-    return YES;
-}
-
--(void)handleIncomingURL:(NSTimer*)userInfo {
-    NSURL* url = (NSURL*)userInfo.userInfo;
-    NSString *urlString = [[url absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    // SessionM scheme should be sessionmYourAppId as seen in project settings.  If match, pass to [[SessionM sharedInstance] handleUrl:]
-    if ([urlString rangeOfString:@"sessionm7a6cf3f9d1a2016efd1bb5b3a1193a22785480cb://portal"].location != NSNotFound) {
+    if ([SessionM sharedInstance].sessionState == SessionMStateStartedOnline) {
         [[SessionM sharedInstance] handleURL:url];
+    } else {
+        self.pendingURL = url;
     }
+    return YES;
 }
 
 @end
