@@ -1,1 +1,1 @@
-../../SessionM/SessionM_iOS_v1.12.5_Release/SessionM-SDK/API/SMActivityViewController.h
+../../SessionM/SessionM_iOS_v1.12.6_Release/SessionM-SDK/API/SMActivityViewController.h
