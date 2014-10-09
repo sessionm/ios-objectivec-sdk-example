@@ -1,1 +1,1 @@
-../../SessionM/SessionM_iOS_v1.12.6_Release/SessionM-SDK/API/SessionM.h
+../../SessionM/SessionM_iOS_v1.12.7_Release/SessionM-SDK/API/SessionM.h

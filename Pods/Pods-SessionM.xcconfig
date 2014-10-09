@@ -1,2 +1,2 @@
-PODS_SESSIONM_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/SessionM/**" "$(PODS_ROOT)/SessionM/SessionM_iOS_v1.12.6_Release/SessionM-SDK"
-PODS_SESSIONM_OTHER_LDFLAGS = -lSessionM.1.12.6 -framework AVFoundation -framework AdSupport -framework CoreData -framework CoreGraphics -framework CoreMedia -framework EventKit -framework EventKitUI -framework Foundation -framework MediaPlayer -framework Security -framework StoreKit -framework SystemConfiguration -framework UIKit
+PODS_SESSIONM_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/SessionM/**" "$(PODS_ROOT)/SessionM/SessionM_iOS_v1.12.7_Release/SessionM-SDK"
+PODS_SESSIONM_OTHER_LDFLAGS = -lSessionM.1.12.7 -framework AVFoundation -framework AdSupport -framework CoreData -framework CoreGraphics -framework CoreMedia -framework EventKit -framework EventKitUI -framework Foundation -framework MediaPlayer -framework Security -framework StoreKit -framework SystemConfiguration -framework UIKit
