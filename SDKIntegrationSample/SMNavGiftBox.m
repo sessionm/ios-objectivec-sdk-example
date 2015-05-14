@@ -99,10 +99,10 @@
                                                                                                     }
                                                                                                 } completion:^(BOOL finished){
                                                                                     // restore the non-scaled state
+                                                                            [self.view addSubview:achievementsLabel];
                                                                                                     if (finished) {
-                                                                                                                                                                        [self.view addSubview:achievementsLabel];
                                                                                                         safeToUpdate = YES;
-                                                                                                    }
+                                                                                                        }
                                                                                                 }];
                                                                        }];
                                               }];
