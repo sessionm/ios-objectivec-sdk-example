@@ -32,10 +32,10 @@
         imageview.image = [[UIImage imageNamed: @"m-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [imageview setTintColor:[UIColor colorWithRed:0.376 green:0.698 blue:0.059 alpha:1]];
         
-        self.achievementsLabel = [[UILabel alloc] initWithFrame:CGRectMake(21, -7, 25, 15)];
+        self.achievementsLabel = [[UILabel alloc] initWithFrame:CGRectMake(22, -7, 25, 15)];
         [self.achievementsLabel  setTextColor:[UIColor whiteColor]];
         [self.achievementsLabel  setBackgroundColor:[UIColor clearColor]];
-        [self.achievementsLabel  setFont:[UIFont fontWithName: @"THelvetica Neue" size: 14.0f]];
+        [self.achievementsLabel  setFont:[UIFont fontWithName: @"Helvetica Neue" size: 14.0f]];
         
         self.achievementsLabel.text = [NSString stringWithFormat: @"%lu", (unsigned long)[SessionM sharedInstance].user.unclaimedAchievementCount];
         
@@ -97,12 +97,11 @@
                                                                                                         achievementsLabel.text = [NSString stringWithFormat: @"%lu", (unsigned long)[SessionM sharedInstance].user.unclaimedAchievementCount];
                                                                                                         [self.view addSubview:achievementsLabel];
                                                                                                     }
-                                                                                                } completion:^(BOOL finished){
-                                                                                    // restore the non-scaled state
-                                                                            [self.view addSubview:achievementsLabel];
+                                                                                                } completion:^(BOOL finished) {
+                                                                                                    // restore the non-scaled state
                                                                                                     if (finished) {
                                                                                                         safeToUpdate = YES;
-                                                                                                        }
+                                                                                                    }
                                                                                                 }];
                                                                        }];
                                               }];
