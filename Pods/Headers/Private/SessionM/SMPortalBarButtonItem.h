@@ -1,0 +1,1 @@
+../../../SessionM/SessionM_iOS_v1.14.3_Release/SessionM-SDK/API/SMPortalBarButtonItem.h

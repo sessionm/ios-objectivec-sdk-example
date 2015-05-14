@@ -11,6 +11,10 @@
 #import "SMViewController.h"
 #import "SMLeftViewController.h"
 
+// See https://developer.sessionm.com/get_started
+// to get your app ID as well as setup actions and achievements.
+#define YOUR_APP_ID @"YOUR_KEY"
+
 @implementation SMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -21,6 +25,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = container;
     [self.window makeKeyAndVisible];
+    // Set the delegate so we get notified from the SDK
+    [[SessionM sharedInstance] setDelegate:self];
+    // Init the SDK
+    SMStart(YOUR_APP_ID);
 
     return YES;
 }

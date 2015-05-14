@@ -12,16 +12,17 @@
 #import "SMActivityViewController.h"
 #import "SMLeftViewController.h"
 #import "SMHamburger.h"
+#import "SMNavGiftBox.h"
 
 @interface SMViewController () {
     SMHamburger *smBurger;
+    SMNavGiftBox *smNav;
     UIView *welcomeView;
 }
 @end
 
 // See https://developer.sessionm.com/get_started
 // to get your app ID as well as setup actions and achievements.
-#define YOUR_APP_ID @"YOUR_KEY"
 #define YOUR_TEST_ACTION @"red_button_tapped"
 #define YOUR_TEST_ACTION2 @"purple_button_tapped"
 #define kIntroSeen @"com.sessionm.SessionM.introSeen"
@@ -39,9 +40,7 @@
     
     // Set the delegate so we get notified from the SDK
     [[SessionM sharedInstance] setDelegate:self];
-    // Init the SDK
-    SMStart(YOUR_APP_ID);
-    
+     
     // Create SMPortalButton - By using the SMPortalButton class, the button's tap
     // target is automagically setup for you. Just tap to open SessionM portal.
     SMPortalButton *portalButton=[SMPortalButton buttonWithType:UIButtonTypeCustom];
@@ -64,11 +63,19 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated  {
+    // Hamburger Style Menu
     [smBurger.view removeFromSuperview];
     smBurger = [SMHamburger new];
     smBurger.view.frame = CGRectMake(65, 40, smBurger.view.frame.size.width, smBurger.view.frame.size.height);
     [self.navigationController.view addSubview: smBurger.view];
     [smBurger animate];
+    // Gift box on Navigation bar
+    [smNav.view removeFromSuperview];
+    smNav = [SMNavGiftBox new];
+    smNav.view.frame = CGRectMake(self.view.frame.size.width-60, 32, smNav.view.frame.size.width/3, smNav.view.frame.size.height/3);
+    [self.navigationController.view addSubview: smNav.view];
+    [smNav animate];
+
     [self.containerVC setPanMode:MFSideMenuPanModeDefault];
 }
 

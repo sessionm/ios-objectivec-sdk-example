@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SessionM.h"
 
-@interface SMAppDelegate : UIResponder <UIApplicationDelegate>
+@interface SMAppDelegate : UIResponder <UIApplicationDelegate,SessionMDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSURL *pendingURL;

@@ -1,1 +1,0 @@
-../../SessionM/SessionM_iOS_v1.12.7_Release/SessionM-SDK/API/SMPortalButton.h

@@ -34,7 +34,7 @@
         self.achievementsLabel = [[UILabel alloc] initWithFrame:CGRectMake(-3, -7, 25, 15)];
         [self.achievementsLabel  setTextColor:[[UIColor alloc]  initWithRed:201/255.f green:26/255.f blue:26/255.f alpha:1.0]];
         [self.achievementsLabel  setBackgroundColor:[UIColor clearColor]];
-        [self.achievementsLabel  setFont:[UIFont fontWithName: @"Trebuchet MS" size: 17.0f]];
+        [self.achievementsLabel  setFont:[UIFont fontWithName: @"Helvetica Neue" size: 17.0f]];
         
         self.achievementsLabel.text = [NSString stringWithFormat: @"%lu", (unsigned long)[SessionM sharedInstance].user.unclaimedAchievementCount];
         
