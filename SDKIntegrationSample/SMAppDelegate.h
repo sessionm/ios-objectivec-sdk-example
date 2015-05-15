@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SessionM.h"
 
-@interface SMAppDelegate : UIResponder <UIApplicationDelegate,SessionMDelegate>
+@interface SMAppDelegate : UIResponder <UIApplicationDelegate,SessionMDelegate>{
+   UIView *welcomeView;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSURL *pendingURL;

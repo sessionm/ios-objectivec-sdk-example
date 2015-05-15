@@ -8,6 +8,7 @@
 
 #import "SMNavGiftBox.h"
 #import "SessionM.h"
+#import "SMActivityViewController.h"
 
 @interface SMNavGiftBox (){
 
@@ -123,6 +124,7 @@
 
 - (IBAction)touchGiftBox:(id)sender {
     [[SessionM sharedInstance]presentActivity:SMActivityTypePortal];
+
     NSLog(@"SessionM: Tapped Gift Box");
 }
 
