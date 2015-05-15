@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55339E3D1B067B630038FDA0 /* SessionMUIWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55339E3B1B067B630038FDA0 /* SessionMUIWelcomeViewController.m */; };
+		55339E3E1B067B630038FDA0 /* SessionMUIWelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55339E3C1B067B630038FDA0 /* SessionMUIWelcomeViewController.xib */; };
 		55BC6E261B051C4200AAD9B3 /* SMNavGiftBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BC6E241B051C4200AAD9B3 /* SMNavGiftBox.m */; };
 		55BC6E271B051C4200AAD9B3 /* SMNavGiftBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BC6E251B051C4200AAD9B3 /* SMNavGiftBox.xib */; };
 		61D3CB5FA45E490282DF4DA4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE913BB6A98473B89A5F69E /* libPods.a */; };
@@ -47,6 +49,9 @@
 /* Begin PBXFileReference section */
 		0FE913BB6A98473B89A5F69E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4163E8CC2BDABEF97D73849B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		55339E3A1B067B630038FDA0 /* SessionMUIWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionMUIWelcomeViewController.h; sourceTree = "<group>"; };
+		55339E3B1B067B630038FDA0 /* SessionMUIWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionMUIWelcomeViewController.m; sourceTree = "<group>"; };
+		55339E3C1B067B630038FDA0 /* SessionMUIWelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionMUIWelcomeViewController.xib; sourceTree = "<group>"; };
 		55BC6E231B051C4200AAD9B3 /* SMNavGiftBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNavGiftBox.h; sourceTree = "<group>"; };
 		55BC6E241B051C4200AAD9B3 /* SMNavGiftBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNavGiftBox.m; sourceTree = "<group>"; };
 		55BC6E251B051C4200AAD9B3 /* SMNavGiftBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMNavGiftBox.xib; sourceTree = "<group>"; };
@@ -175,6 +180,9 @@
 				55BC6E231B051C4200AAD9B3 /* SMNavGiftBox.h */,
 				55BC6E241B051C4200AAD9B3 /* SMNavGiftBox.m */,
 				55BC6E251B051C4200AAD9B3 /* SMNavGiftBox.xib */,
+				55339E3A1B067B630038FDA0 /* SessionMUIWelcomeViewController.h */,
+				55339E3B1B067B630038FDA0 /* SessionMUIWelcomeViewController.m */,
+				55339E3C1B067B630038FDA0 /* SessionMUIWelcomeViewController.xib */,
 				E1CAABE219BA1A7D000FAB75 /* Images.xcassets */,
 				E1CAABD119BA1A7D000FAB75 /* Supporting Files */,
 			);
@@ -295,6 +303,7 @@
 				E1085FE319DF305B00B5EA05 /* SMHamburger.xib in Resources */,
 				E1CAABD519BA1A7D000FAB75 /* InfoPlist.strings in Resources */,
 				E1CAAC0019BA1A86000FAB75 /* Podfile in Resources */,
+				55339E3E1B067B630038FDA0 /* SessionMUIWelcomeViewController.xib in Resources */,
 				E1CAABDE19BA1A7D000FAB75 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +360,7 @@
 				E1085FDF19DF258A00B5EA05 /* SMLeftViewController.m in Sources */,
 				E1CAABDB19BA1A7D000FAB75 /* SMAppDelegate.m in Sources */,
 				E1B451F919BF728400C17F96 /* SMCustomAchievementActivity.m in Sources */,
+				55339E3D1B067B630038FDA0 /* SessionMUIWelcomeViewController.m in Sources */,
 				55BC6E261B051C4200AAD9B3 /* SMNavGiftBox.m in Sources */,
 				E1085FE419DF305B00B5EA05 /* SMHamburger.m in Sources */,
 				E1CAABE119BA1A7D000FAB75 /* SMViewController.m in Sources */,
