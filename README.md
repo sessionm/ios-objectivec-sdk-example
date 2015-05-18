@@ -10,10 +10,10 @@ For more help see http://www.sessionm.com/documentation/index.php
 
 #How to use Animated Gift Box
 
-Add the follwing files found in the CLASSES folder to your project:
-	`SMNavGiftBox.h`
-	`SMNavGiftBox.m`
-	`SMNavGiftBox.xib`
+Add the follwing files found in the SDKIntegrationSample folder to your project:
+ 	`SMNavGiftBox.h`
+ 	`SMNavGiftBox.m`
+ 	`SMNavGiftBox.xib`
 
 Create a `SMNavGiftBox`.
 
@@ -33,3 +33,66 @@ Create a `SMNavGiftBox`.
 		[smNav animate];
 	}	
 
+#How to use the Welcome Screen to educate users on earning mPOINTS
+
+Add the follwing files found in the SDKIntegrationSample folder to your project:
+ 	`SessionMUIWelcomeViewController.h`
+ 	`SessionMUIWelcomeViewController.m`
+ 	`SessionMUIWelcomeViewController.xib`
+
+Create a `SessionMUIWelcomeViewController`.
+	
+	// YourAppDelegate.h
+	
+	#import "SessionMUIWelcomeViewController.h"
+
+	// See https://developer.sessionm.com/get_started
+	// to get your app ID as well as setup actions and achievements.
+	
+	#define YOUR_APP_ID @""
+	
+	- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
+		// Set the delegate so we get notified from the SDK
+		[[SessionM sharedInstance] setDelegate:self];
+		
+		// Init the SDK
+		SMStart(YOUR_APP_ID);
+
+		//[SessionM sharedInstance].logLevel = SMLogLevelDebug;
+		[[NSNotificationCenter defaultCenter] addObserver:self
+							selector:@selector(showSessionMWelcomeAfterNotification:)
+							name:@"SMWelcomeWillEnterForeground"
+							object:nil];
+		return YES;
+	}
+
+	- (void)applicationWillResignActive:(UIApplication *)application{
+		// Use this method to remove notification observer.
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:@"SMWelcomeWillEnterForeground" object:nil];
+
+	}
+
+	- (void)applicationDidEnterBackground:(UIApplication *)application{
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:@"SMWelcomeWillEnterForeground" object:nil];
+	}
+
+	- (void)applicationWillEnterForeground:(UIApplication *)application{
+		// SessionM observer to make sure we display rewards welcome content only after the Application enters Foreground 
+		[[NSNotificationCenter defaultCenter] addObserver:self
+							selector:@selector(showSessionMWelcomeAfterNotification:)
+							name:@"SMWelcomeWillEnterForeground"
+							object:nil];
+    		
+		// SessionM make sure we do not display the SessionM rewards welcome by default
+		[self showSessionMWelcome:NO];
+
+	}
+
+	- (void)applicationDidBecomeActive:(UIApplication *)application{
+
+    		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+		[[NSNotificationCenter defaultCenter] addObserver:self
+							selector:@selector(showSessionMWelcomeAfterNotification:)
+							name:@"SMWelcomeWillEnterForeground"
+							object:nil];
+	}
