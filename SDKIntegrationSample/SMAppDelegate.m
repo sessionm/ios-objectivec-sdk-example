@@ -11,10 +11,11 @@
 #import "SMViewController.h"
 #import "SMLeftViewController.h"
 #import "SessionMUIWelcomeViewController.h"
+#import "SMMultiCastDelegate.h"
 
 // See https://developer.sessionm.com/get_started
 // to get your app ID as well as setup actions and achievements.
-#define YOUR_APP_ID @""
+#define YOUR_APP_ID @"aba6ba56b63680cad063e987df52a71e620dbc77"
 
 @implementation SMAppDelegate
 
@@ -27,8 +28,9 @@
     self.window.rootViewController = container;
     [self.window makeKeyAndVisible];
     
-    // Set the delegate so we get notified from the SDK
-    [[SessionM sharedInstance] setDelegate:self];
+    // Set the delegate so we get notified from the SDK to MutlicastDelegate instance
+    [[SessionM sharedInstance] setDelegate:[SMMulticastDelegate sharedInstance]];
+    
     // Init the SDK
     SMStart(YOUR_APP_ID);
     // If you need to Debug Logs uncomment the line below

@@ -8,6 +8,7 @@
 
 #import "SMHamburger.h"
 #import "SessionM.h"
+#import "SMMultiCastDelegate.h"
 
 @interface SMHamburger () {
     BOOL safeToUpdate;
@@ -47,8 +48,12 @@
         
         [self.view addSubview:self.circleView];
         // This is very important since Delegate will let us update the Label when the SMUser object updates
-        // in the SessionM SDK
-        [SessionM sharedInstance].delegate = self;
+        // Set the delegate so we get notified from the SDK
+        //[[SessionM sharedInstance] setDelegate:self];
+        
+        // WE USE OUR OWN CUSTOM DELEGATE MULTICASTER INSTEAD TO SHOW SOME
+        // ADVANCED CAPABILITIES
+        [[SMMulticastDelegate sharedInstance] addDelegate:self];
         
     }
     return self;

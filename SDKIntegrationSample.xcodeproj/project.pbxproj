@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		55339E3D1B067B630038FDA0 /* SessionMUIWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55339E3B1B067B630038FDA0 /* SessionMUIWelcomeViewController.m */; };
 		55339E3E1B067B630038FDA0 /* SessionMUIWelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55339E3C1B067B630038FDA0 /* SessionMUIWelcomeViewController.xib */; };
+		55339E411B0AABD50038FDA0 /* SMMultiCastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55339E401B0AABD50038FDA0 /* SMMultiCastDelegate.m */; };
 		55BC6E261B051C4200AAD9B3 /* SMNavGiftBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BC6E241B051C4200AAD9B3 /* SMNavGiftBox.m */; };
 		55BC6E271B051C4200AAD9B3 /* SMNavGiftBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55BC6E251B051C4200AAD9B3 /* SMNavGiftBox.xib */; };
 		61D3CB5FA45E490282DF4DA4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FE913BB6A98473B89A5F69E /* libPods.a */; };
@@ -52,6 +53,8 @@
 		55339E3A1B067B630038FDA0 /* SessionMUIWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionMUIWelcomeViewController.h; sourceTree = "<group>"; };
 		55339E3B1B067B630038FDA0 /* SessionMUIWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionMUIWelcomeViewController.m; sourceTree = "<group>"; };
 		55339E3C1B067B630038FDA0 /* SessionMUIWelcomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SessionMUIWelcomeViewController.xib; sourceTree = "<group>"; };
+		55339E3F1B0AABD50038FDA0 /* SMMultiCastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMMultiCastDelegate.h; sourceTree = "<group>"; };
+		55339E401B0AABD50038FDA0 /* SMMultiCastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMMultiCastDelegate.m; sourceTree = "<group>"; };
 		55BC6E231B051C4200AAD9B3 /* SMNavGiftBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNavGiftBox.h; sourceTree = "<group>"; };
 		55BC6E241B051C4200AAD9B3 /* SMNavGiftBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNavGiftBox.m; sourceTree = "<group>"; };
 		55BC6E251B051C4200AAD9B3 /* SMNavGiftBox.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SMNavGiftBox.xib; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 			children = (
 				E1CAABD919BA1A7D000FAB75 /* SMAppDelegate.h */,
 				E1CAABDA19BA1A7D000FAB75 /* SMAppDelegate.m */,
+				55339E3F1B0AABD50038FDA0 /* SMMultiCastDelegate.h */,
+				55339E401B0AABD50038FDA0 /* SMMultiCastDelegate.m */,
 				E1CAABDC19BA1A7D000FAB75 /* Main.storyboard */,
 				E1085FD219DF1C6900B5EA05 /* SMContainerViewController.h */,
 				E1085FD319DF1C6900B5EA05 /* SMContainerViewController.m */,
@@ -363,6 +368,7 @@
 				55339E3D1B067B630038FDA0 /* SessionMUIWelcomeViewController.m in Sources */,
 				55BC6E261B051C4200AAD9B3 /* SMNavGiftBox.m in Sources */,
 				E1085FE419DF305B00B5EA05 /* SMHamburger.m in Sources */,
+				55339E411B0AABD50038FDA0 /* SMMultiCastDelegate.m in Sources */,
 				E1CAABE119BA1A7D000FAB75 /* SMViewController.m in Sources */,
 				E1CAABD719BA1A7D000FAB75 /* main.m in Sources */,
 				E1085FD419DF1C6900B5EA05 /* SMContainerViewController.m in Sources */,

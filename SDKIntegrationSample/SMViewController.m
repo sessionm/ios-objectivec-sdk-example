@@ -14,6 +14,7 @@
 #import "SMLeftViewController.h"
 #import "SMHamburger.h"
 #import "SMNavGiftBox.h"
+#import "SMMultiCastDelegate.h"
 
 @interface SMViewController () {
     SMHamburger *smBurger;
@@ -40,8 +41,12 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     // Set the delegate so we get notified from the SDK
-    [[SessionM sharedInstance] setDelegate:self];
-     
+    //[[SessionM sharedInstance] setDelegate:self];
+    
+    // WE USE OUR OWN CUSTOM DELEGATE MULTICASTER INSTEAD TO SHOW SOME
+    // ADVANCED CAPABILITIES
+    [[SMMulticastDelegate sharedInstance] addDelegate:self];
+    
     // Create SMPortalButton - By using the SMPortalButton class, the button's tap
     // target is automagically setup for you. Just tap to open SessionM portal.
     SMPortalButton *portalButton=[SMPortalButton buttonWithType:UIButtonTypeCustom];
@@ -146,8 +151,7 @@
     } else {
         self.bigBlueButton.hidden = YES;
     }
-    
-    [smBurger update];
+
 }
 
 

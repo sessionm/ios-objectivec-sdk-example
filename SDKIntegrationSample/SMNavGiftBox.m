@@ -9,6 +9,7 @@
 #import "SMNavGiftBox.h"
 #import "SessionM.h"
 #import "SMActivityViewController.h"
+#import "SMMultiCastDelegate.h"
 
 @interface SMNavGiftBox (){
 
@@ -50,11 +51,13 @@
         [self.circleView addSubview:imageview];
         [self.view addSubview:self.circleView];
         
-        // This is very important since Delegate will let us update the Label when the SMUser object updates
-        // in the SessionM SDK
-        [SessionM sharedInstance].delegate = self;
+        // This is very important since Delegate will let us update the Label when the SMUser object updates in the SDK
+        // Set the delegate so we get notified from the SDK
+        //[[SessionM sharedInstance] setDelegate:self];
         
-        
+        // WE USE OUR OWN CUSTOM DELEGATE MULTICASTER INSTEAD TO SHOW SOME
+        // ADVANCED CAPABILITIES
+        [[SMMulticastDelegate sharedInstance] addDelegate:self];
     }
     return self;
 }
@@ -143,5 +146,6 @@
 
 -(void)sessionM:(SessionM *)sessionM didUpdateUser:(SMUser *)user{
     [self update];
+    
 }
 @end
