@@ -8,7 +8,16 @@ If you do not use cocoapods in your project, download the SessionM SDK (http://w
 
 For more help see http://www.sessionm.com/documentation/index.php
 
+## Requirements
+* Xcode 5 or higher
+* Apple LLVM compiler
+* iOS 6.0 or higher
+* ARC
+
 #How to use Animated Gift Box
+
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SMNavGiftBox.png" alt="SMNavGiftBox Screenshot" width="400" height="568" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SMNavGiftBox.gif" alt="SMNavGiftBox Anima" width="320" height="568" />
 
 Add the follwing files found in the SDKIntegrationSample folder to your project:
  	`SMNavGiftBox.h`
