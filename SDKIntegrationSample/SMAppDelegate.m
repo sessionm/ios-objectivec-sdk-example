@@ -15,7 +15,7 @@
 
 // See https://developer.sessionm.com/get_started
 // to get your app ID as well as setup actions and achievements.
-#define YOUR_APP_ID @"aba6ba56b63680cad063e987df52a71e620dbc77"
+#define YOUR_APP_ID @""
 
 @implementation SMAppDelegate
 
