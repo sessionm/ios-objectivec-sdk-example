@@ -96,3 +96,54 @@ Create a `SessionMUIWelcomeViewController`.
 							name:@"SMWelcomeWillEnterForeground"
 							object:nil];
 	}
+
+
+	#pragma mark - Welcome Splash
+
+	-(void) showSessionMWelcome:(BOOL) enteredForeground {
+		SessionM *smSessionInfo = [SessionM sharedInstance];
+		if(smSessionInfo ) {
+			SessionMState *smSessionState = (SessionMState *) smSessionInfo.sessionState;
+			NSUserDefaults *smDefaults = [NSUserDefaults standardUserDefaults];
+			if(![[NSUserDefaults standardUserDefaults] boolForKey:@"com.sessionm.SessionM.introSeen"] &&   
+			// if the user has not see this yet
+           		smSessionState != (SessionMState *)SessionMServiceUnavailable &&
+			// the service is available 
+			smSessionInfo.user.isOptedOut == NO && 
+			// the user is opted into rewards and only display if on second session or app open to be polite
+			smSessionInfo.displayInAppWelcomeFlow) {
+				// You can save this(com.sessionm.SessionM.introSeen) key using your Custom Defaults init or use the code below;
+				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"com.sessionm.SessionM.introSeen"];
+				[[NSUserDefaults standardUserDefaults] synchronize]; 
+			
+				// Add A Tap Gesture Recognizer if you do not want to Click the Button, but if you do want the tap to be captured.
+				// Please use IBAction under SessionMUIWelcomeViewController.h
+				SessionMUIWelcomeViewController *smWelcomeViewController = [[SessionMUIWelcomeViewController alloc] init];
+				UITapGestureRecognizer *smWelcomeRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeSMWelcomeView:)];
+				[smWelcomeViewController.view addGestureRecognizer:smWelcomeRecognizer];
+				UIViewController *rootController = [[UIApplication sharedApplication] keyWindow].rootViewController;
+				[rootController.view addSubview:smWelcomeViewController.view];
+			}
+		}
+	}
+
+	-(void) showSessionMWelcomeAfterNotification:(NSNotification*) foregroundNotification {
+		[self showSessionMWelcome:YES];
+	}
+
+	-(void)closeSMWelcomeView:(UIGestureRecognizer *)recognizer {
+		[recognizer.view removeFromSuperview];
+	}
+
+
+	-(void)hideSMWelcome:(UITapGestureRecognizer*)recognizer {
+		if (recognizer.state == UIGestureRecognizerStateRecognized) {
+			[UIView animateKeyframesWithDuration:0.5 delay:0 options:0 animations:^{
+			welcomeView.alpha = 0;}
+			completion:^(BOOL finished) {
+				[welcomeView removeFromSuperview];
+				welcomeView = nil;
+			}];
+		}
+	}
+
