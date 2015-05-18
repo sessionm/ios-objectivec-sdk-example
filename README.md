@@ -57,104 +57,22 @@ Create a `SessionMUIWelcomeViewController`.
 	
 	#import "SessionMUIWelcomeViewController.h"
 
+	@interface SMAppDelegate : UIResponder <UIApplicationDelegate>{
+		SessionMUIWelcomeViewController *welcomeView;
+	}
+
 	// See https://developer.sessionm.com/get_started
 	// to get your app ID as well as setup actions and achievements.
 	
 	#define YOUR_APP_ID @""
-	
+		
 	- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
 		// Set the delegate so we get notified from the SDK
 		[[SessionM sharedInstance] setDelegate:self];
 		
 		// Init the SDK
 		SMStart(YOUR_APP_ID);
-
-		//[SessionM sharedInstance].logLevel = SMLogLevelDebug;
-		[[NSNotificationCenter defaultCenter] addObserver:self
-							selector:@selector(showSessionMWelcomeAfterNotification:)
-							name:@"SMWelcomeWillEnterForeground"
-							object:nil];
-		return YES;
+		
+		// Automatically Shows the Welcome View introducing users to the mPOINTS Rewards/Loyalty Program
+		welcomeView = [[SessionMUIWelcomeViewController alloc] init];
 	}
-
-	- (void)applicationWillResignActive:(UIApplication *)application{
-		// Use this method to remove notification observer.
-		[[NSNotificationCenter defaultCenter] removeObserver:self name:@"SMWelcomeWillEnterForeground" object:nil];
-
-	}
-
-	- (void)applicationDidEnterBackground:(UIApplication *)application{
-		[[NSNotificationCenter defaultCenter] removeObserver:self name:@"SMWelcomeWillEnterForeground" object:nil];
-	}
-
-	- (void)applicationWillEnterForeground:(UIApplication *)application{
-		// SessionM observer to make sure we display rewards welcome content only after the Application enters Foreground 
-		[[NSNotificationCenter defaultCenter] addObserver:self
-							selector:@selector(showSessionMWelcomeAfterNotification:)
-							name:@"SMWelcomeWillEnterForeground"
-							object:nil];
-    		
-		// SessionM make sure we do not display the SessionM rewards welcome by default
-		[self showSessionMWelcome:NO];
-
-	}
-
-	- (void)applicationDidBecomeActive:(UIApplication *)application{
-
-    		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-		[[NSNotificationCenter defaultCenter] addObserver:self
-							selector:@selector(showSessionMWelcomeAfterNotification:)
-							name:@"SMWelcomeWillEnterForeground"
-							object:nil];
-	}
-
-
-	#pragma mark - Welcome Splash
-
-	-(void) showSessionMWelcome:(BOOL) enteredForeground {
-		SessionM *smSessionInfo = [SessionM sharedInstance];
-		if(smSessionInfo ) {
-			SessionMState *smSessionState = (SessionMState *) smSessionInfo.sessionState;
-			NSUserDefaults *smDefaults = [NSUserDefaults standardUserDefaults];
-			if(![[NSUserDefaults standardUserDefaults] boolForKey:@"com.sessionm.SessionM.introSeen"] &&   
-			// if the user has not see this yet
-           		smSessionState != (SessionMState *)SessionMServiceUnavailable &&
-			// the service is available 
-			smSessionInfo.user.isOptedOut == NO && 
-			// the user is opted into rewards and only display if on second session or app open to be polite
-			smSessionInfo.displayInAppWelcomeFlow) {
-				// You can save this(com.sessionm.SessionM.introSeen) key using your Custom Defaults init or use the code below;
-				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"com.sessionm.SessionM.introSeen"];
-				[[NSUserDefaults standardUserDefaults] synchronize]; 
-			
-				// Add A Tap Gesture Recognizer if you do not want to Click the Button, but if you do want the tap to be captured.
-				// Please use IBAction under SessionMUIWelcomeViewController.h
-				SessionMUIWelcomeViewController *smWelcomeViewController = [[SessionMUIWelcomeViewController alloc] init];
-				UITapGestureRecognizer *smWelcomeRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeSMWelcomeView:)];
-				[smWelcomeViewController.view addGestureRecognizer:smWelcomeRecognizer];
-				UIViewController *rootController = [[UIApplication sharedApplication] keyWindow].rootViewController;
-				[rootController.view addSubview:smWelcomeViewController.view];
-			}
-		}
-	}
-
-	-(void) showSessionMWelcomeAfterNotification:(NSNotification*) foregroundNotification {
-		[self showSessionMWelcome:YES];
-	}
-
-	-(void)closeSMWelcomeView:(UIGestureRecognizer *)recognizer {
-		[recognizer.view removeFromSuperview];
-	}
-
-
-	-(void)hideSMWelcome:(UITapGestureRecognizer*)recognizer {
-		if (recognizer.state == UIGestureRecognizerStateRecognized) {
-			[UIView animateKeyframesWithDuration:0.5 delay:0 options:0 animations:^{
-			welcomeView.alpha = 0;}
-			completion:^(BOOL finished) {
-				[welcomeView removeFromSuperview];
-				welcomeView = nil;
-			}];
-		}
-	}
-

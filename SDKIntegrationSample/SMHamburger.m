@@ -46,7 +46,9 @@
         self.circleView.backgroundColor = [UIColor whiteColor];
         
         [self.view addSubview:self.circleView];
-        
+        // This is very important since Delegate will let us update the Label when the SMUser object updates
+        // in the SessionM SDK
+        [SessionM sharedInstance].delegate = self;
         
     }
     return self;

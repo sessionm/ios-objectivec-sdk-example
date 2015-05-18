@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SessionM.h"
+#import "SessionMUIWelcomeViewController.h"
 
-@interface SMAppDelegate : UIResponder <UIApplicationDelegate,SessionMDelegate>{
-   UIView *welcomeView;
+@interface SMAppDelegate : UIResponder <UIApplicationDelegate>{
+   SessionMUIWelcomeViewController *welcomeView;
 }
 
 @property (strong, nonatomic) UIWindow *window;
