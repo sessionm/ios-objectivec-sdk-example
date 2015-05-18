@@ -10,6 +10,11 @@ For more help see http://www.sessionm.com/documentation/index.php
 
 #How to use Animated Gift Box
 
+Add the follwing files found in the CLASSES folder to your project:
+	`SMNavGiftBox.h`
+	`SMNavGiftBox.m`
+	`SMNavGiftBox.xib`
+
 Create a `SMNavGiftBox`.
 
 	@interface YOUR_VIEW_CONTROLLER () {
