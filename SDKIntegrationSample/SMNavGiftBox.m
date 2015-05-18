@@ -50,6 +50,10 @@
         [self.circleView addSubview:imageview];
         [self.view addSubview:self.circleView];
         
+        // This is very important since Delegate will let us update the Label when the SMUser object updates
+        // in the SessionM SDK
+        [SessionM sharedInstance].delegate = self;
+        
         
     }
     return self;
@@ -58,9 +62,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 }
 
 -(void) animate{
+    achievementsLabel.text = @"";
+    [self.circleView addSubview:imageview];
     safeToUpdate = NO;
     circleView.alpha = 0.0;
     [UIView animateWithDuration:0.2
@@ -135,4 +142,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)sessionM:(SessionM *)sessionM didUpdateUser:(SMUser *)user{
+    [self update];
+}
 @end

@@ -31,7 +31,7 @@
         imageview.image = [[UIImage imageNamed: @"m-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [imageview setTintColor:[UIColor colorWithRed:0.376 green:0.698 blue:0.059 alpha:1]];
         
-        self.achievementsLabel = [[UILabel alloc] initWithFrame:CGRectMake(-3, -7, 25, 15)];
+        self.achievementsLabel = [[UILabel alloc] initWithFrame:CGRectMake(-4, -7, 25, 15)];
         [self.achievementsLabel  setTextColor:[[UIColor alloc]  initWithRed:201/255.f green:26/255.f blue:26/255.f alpha:1.0]];
         [self.achievementsLabel  setBackgroundColor:[UIColor clearColor]];
         [self.achievementsLabel  setFont:[UIFont fontWithName: @"Helvetica Neue" size: 17.0f]];
@@ -45,7 +45,6 @@
         self.circleView.layer.cornerRadius = 1;
         self.circleView.backgroundColor = [UIColor whiteColor];
         
-        [self.circleView addSubview:imageview];
         [self.view addSubview:self.circleView];
         
         
@@ -59,6 +58,8 @@
 }
 
 -(void) animate{
+    achievementsLabel.text = @"";
+    [self.circleView addSubview:imageview];
     safeToUpdate = NO;
     circleView.alpha = 0.0;
     [UIView animateWithDuration:0.2
@@ -125,6 +126,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)sessionM:(SessionM *)sessionM didUpdateUser:(SMUser *)user{
+    [self update];
 }
 
 @end

@@ -24,8 +24,8 @@
 
 // See https://developer.sessionm.com/get_started
 // to get your app ID as well as setup actions and achievements.
-#define YOUR_TEST_ACTION @"red_button_tapped"
-#define YOUR_TEST_ACTION2 @"purple_button_tapped"
+#define YOUR_TEST_ACTION @"watch_local_video"
+#define YOUR_TEST_ACTION2 @"must_see_video"
 #define kIntroSeen @"com.sessionm.SessionM.introSeen"
 @implementation SMViewController
 
@@ -57,30 +57,30 @@
     [self.bigGreenButton setTitle: @"Offline" forState: UIControlStateDisabled];
     [self updateUI:[SessionM sharedInstance].sessionState];
     
-}
-
--(void)viewDidAppear:(BOOL)animated  {
-    // Hamburger Style Menu
-    [smBurger.view removeFromSuperview];
-    smBurger = [SMHamburger new];
-    smBurger.view.frame = CGRectMake(65, 40, smBurger.view.frame.size.width, smBurger.view.frame.size.height);
-    [self.navigationController.view addSubview: smBurger.view];
-    [smBurger animate];
-    // Gift box on Navigation bar
-    [smNav.view removeFromSuperview];
+    // Initialize new SMNavGiftBox
     smNav = [SMNavGiftBox new];
     smNav.view.frame = CGRectMake(self.view.frame.size.width-60, 32, smNav.view.frame.size.width/3, smNav.view.frame.size.height/3);
     [self.navigationController.view addSubview: smNav.view];
-    [smNav animate];
-
-    [self.containerVC setPanMode:MFSideMenuPanModeDefault];
     
     
+    // Initialize Hamburger Style Menu
+    smBurger = [SMHamburger new];
+    smBurger.view.frame = CGRectMake(65, 40, smBurger.view.frame.size.width, smBurger.view.frame.size.height);
+    [self.navigationController.view addSubview: smBurger.view];
     
 }
 
+-(void)viewDidAppear:(BOOL)animated  {
+    [smBurger animate];
+    [smNav animate];
+    [self.containerVC setPanMode:MFSideMenuPanModeDefault];
+}
+
 -(void)viewWillDisappear:(BOOL)animated {
-    [smBurger.view removeFromSuperview];
+    // OPTIONAL (REMEMBER TO RE ADD THESE BACK im viewDidAppear method of your Controller )
+    //[smBurger.view removeFromSuperview];
+    //[smNav.view removeFromSuperview];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {

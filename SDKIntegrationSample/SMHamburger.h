@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SessionM.h"
 
-@interface SMHamburger : UIViewController
+@interface SMHamburger : UIViewController<SessionMDelegate>
 
 @property(nonatomic, strong) UIView *circleView;
 @property(nonatomic, strong) UILabel *achievementsLabel;
