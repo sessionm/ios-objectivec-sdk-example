@@ -25,7 +25,7 @@ Create a `SMNavGiftBox`.
 	- (void)viewDidLoad {
 		
 		// Initialize new SMNavGiftBox
-    		smNav = [SMNavGiftBox new];
+		smNav = [SMNavGiftBox new];
 		smNav.view.frame = CGRectMake(X_COORDINATE, Y_COORDINATE, smNav.view.frame.size.width/3, smNav.view.frame.size.height/3);
 		[self.navigationController.view addSubview: smNav.view];
 
