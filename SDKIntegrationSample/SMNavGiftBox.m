@@ -131,7 +131,6 @@
 
 - (IBAction)touchGiftBox:(id)sender {
     [[SessionM sharedInstance]presentActivity:SMActivityTypePortal];
-
     NSLog(@"SessionM: Tapped Gift Box");
 }
 

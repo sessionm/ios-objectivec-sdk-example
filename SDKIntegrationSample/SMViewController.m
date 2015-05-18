@@ -24,8 +24,8 @@
 
 // See https://developer.sessionm.com/get_started
 // to get your app ID as well as setup actions and achievements.
-#define YOUR_TEST_ACTION @"watch_local_video"
-#define YOUR_TEST_ACTION2 @"must_see_video"
+#define YOUR_TEST_ACTION @"YOUR_TEST_ACTION"
+#define YOUR_TEST_ACTION2 @"YOUR_TEST_ACTION2"
 #define kIntroSeen @"com.sessionm.SessionM.introSeen"
 @implementation SMViewController
 
