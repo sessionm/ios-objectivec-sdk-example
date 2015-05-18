@@ -86,12 +86,32 @@
                                 <rect key="frame" x="160" y="218" width="1" height="124"/>
                                 <color key="backgroundColor" red="0.80392156862745101" green="0.80392156862745101" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhJ-F9-6xS">
+                                <rect key="frame" x="0.0" y="508" width="320" height="60"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="3fG-Us-YJo"/>
+                                </constraints>
+                                <state key="normal" title="Deep Link Banner To Portal">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="pressedDeepLinkBanner:" destination="vXZ-lx-hvc" eventType="touchDown" id="VhN-UN-vu6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="nhJ-F9-6xS" secondAttribute="centerX" id="4vm-rp-6Rt"/>
+                            <constraint firstItem="nhJ-F9-6xS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="T7h-Oi-rrI"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="nhJ-F9-6xS" secondAttribute="bottom" id="acy-cC-F0X"/>
+                            <constraint firstAttribute="trailing" secondItem="nhJ-F9-6xS" secondAttribute="trailing" id="uyM-Jh-Jey"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mT0-v0-hWd"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bigBlueButton" destination="TWh-uI-4ZZ" id="lQw-B7-be3"/>
                         <outlet property="bigGreenButton" destination="PDn-Jh-RFj" id="PcE-sf-Ry3"/>

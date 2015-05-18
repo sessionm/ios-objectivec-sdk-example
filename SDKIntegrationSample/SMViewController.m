@@ -60,17 +60,17 @@
     // Initialize new SMNavGiftBox
     smNav = [SMNavGiftBox new];
     smNav.view.frame = CGRectMake(self.view.frame.size.width-60, 32, smNav.view.frame.size.width/3, smNav.view.frame.size.height/3);
-    [self.navigationController.view addSubview: smNav.view];
-    
     
     // Initialize Hamburger Style Menu
     smBurger = [SMHamburger new];
     smBurger.view.frame = CGRectMake(65, 40, smBurger.view.frame.size.width, smBurger.view.frame.size.height);
-    [self.navigationController.view addSubview: smBurger.view];
     
 }
 
 -(void)viewDidAppear:(BOOL)animated  {
+    // Add Hamburger Bubble and SMNavGiftBox to the View
+    [self.navigationController.view addSubview: smBurger.view];
+    [self.navigationController.view addSubview: smNav.view];
     [smBurger animate];
     [smNav animate];
     [self.containerVC setPanMode:MFSideMenuPanModeDefault];
@@ -78,8 +78,8 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
     // OPTIONAL (REMEMBER TO RE ADD THESE BACK im viewDidAppear method of your Controller )
-    //[smBurger.view removeFromSuperview];
-    //[smNav.view removeFromSuperview];
+    [smBurger.view removeFromSuperview];
+    [smNav.view removeFromSuperview];
 
 }
 
@@ -226,6 +226,14 @@
         }
     }
 //    NSLog(@"%u",state);
+}
+- (IBAction)pressedDeepLinkBanner:(id)sender {
+    // !!!!! NOTE
+    // !!!!! MAKE SURE THE PROTOCOL is the following format @"sessionm" @"YOUR_API_KEY"
+    // !!!!! ALSO ADD IT TO THE URLSchemes under your plist,
+    // Refer Apple documentation: https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Inter-AppCommunication/Inter-AppCommunication.html
+    NSURL *sweepStakes = [NSURL URLWithString:@"sessionm7a6cf3f9d1a2016efd1bb5b3a1193a22785480cb://portal"];
+    [[SessionM sharedInstance] handleURL:sweepStakes];
 }
 
 // Notifies that user info was updated. User info may be different from

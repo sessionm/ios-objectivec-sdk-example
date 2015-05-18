@@ -11,7 +11,7 @@ For more help see http://www.sessionm.com/documentation/index.php
 ## Requirements
 * Xcode 6 or higher
 * Apple LLVM compiler
-* iOS 6.0 or higher
+* iOS 7.0 or higher
 * ARC
 
 #How to use Animated Gift Box
@@ -30,20 +30,24 @@ Create a `SMNavGiftBox`.
 		SMNavGiftBox *smNav;
 	}	
 	
-	
 	- (void)viewDidLoad {
 		
 		// Initialize new SMNavGiftBox
 		smNav = [SMNavGiftBox new];
 		smNav.view.frame = CGRectMake(X_COORDINATE, Y_COORDINATE, smNav.view.frame.size.width/3, smNav.view.frame.size.height/3);
-		[self.navigationController.view addSubview: smNav.view];
 
 	}
 
 	- (void)viewDidAppear:(BOOL)animated {
+		[self.navigationController.view addSubview: smNav.view];
 		[smNav animate];
-	}	
+	}
 
+	-(void)viewWillDisappear:(BOOL)animated {
+		// OPTIONAL (REMEMBER TO RE ADD THESE BACK im viewDidAppear method of your Controller )
+    		[smNav.view removeFromSuperview];
+
+	}
 #How to use the Welcome Screen to educate users on earning mPOINTS
 
 Add the follwing files found in the SDKIntegrationSample folder to your project:
@@ -57,10 +61,14 @@ Create a `SessionMUIWelcomeViewController`.
 	
 	#import "SessionMUIWelcomeViewController.h"
 
-	@interface SMAppDelegate : UIResponder <UIApplicationDelegate>{
+	@interface YourAppDelegate : UIResponder <UIApplicationDelegate>{
 		SessionMUIWelcomeViewController *welcomeView;
 	}
 
+	// YourAppDelegate.m
+
+	@implementation YourAppDelegate
+	
 	// See https://developer.sessionm.com/get_started
 	// to get your app ID as well as setup actions and achievements.
 	
