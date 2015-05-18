@@ -9,7 +9,7 @@ If you do not use cocoapods in your project, download the SessionM SDK (http://w
 For more help see http://www.sessionm.com/documentation/index.php
 
 ## Requirements
-* Xcode 5 or higher
+* Xcode 6 or higher
 * Apple LLVM compiler
 * iOS 6.0 or higher
 * ARC
