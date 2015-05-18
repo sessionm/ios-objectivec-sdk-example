@@ -12,19 +12,21 @@ For more help see http://www.sessionm.com/documentation/index.php
 
 Create a `SMNavGiftBox`.
 
-@interface YOUR_VIEW_CONTROLLER () {
-    SMNavGiftBox *smNav;
-}
+	@interface YOUR_VIEW_CONTROLLER () {
+    		SMNavGiftBox *smNav;
+	}	
 
 
--(void)viewDidAppear:(BOOL)animated  {
-    // Gift box on Navigation bar
-    // You can use the code below to initialize the GiftBox at any other place.
-    [smNav.view removeFromSuperview];
-    smNav = [SMNavGiftBox new];
-    smNav.view.frame = CGRectMake(YOUR_X_COORDINATE,YOUR_Y_COORDINATE,smNav.view.frame.size.width/3, smNav.view.frame.size.height/3);
-    [self.navigationController.view addSubview: smNav.view];
-    [smNav animate];
+	- (void)viewDidAppear:(BOOL)animated  {
+    	
+		// Gift box on Navigation bar
+    		// You can use the code below to initialize the GiftBox at any other place.
+    		
+		[smNav.view removeFromSuperview];
+    		smNav = [SMNavGiftBox new];
+    		smNav.view.frame = CGRectMake(YOUR_X_COORDINATE,YOUR_Y_COORDINATE,smNav.view.frame.size.width/3, smNav.view.frame.size.height/3);
+    		[self.navigationController.view addSubview: smNav.view];
+    		[smNav animate];
  
-}
+	}	
 
