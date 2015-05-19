@@ -39,7 +39,7 @@ Create a `SMNavGiftBox`.
 	}
 
 	- (void)viewDidAppear:(BOOL)animated {
-		[self.navigationController.view addSubview: smNav.view];
+		[self.view addSubview: smNav.view];
 		[smNav animate];
 	}
 
@@ -83,4 +83,40 @@ Create a `SessionMUIWelcomeViewController`.
 		
 		// Automatically Shows the Welcome View introducing users to the mPOINTS Rewards/Loyalty Program
 		welcomeView = [[SessionMUIWelcomeViewController alloc] init];
+	}
+
+#How to use SMHamburger Bubble
+
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SMHamburger.png" alt="SMHamburger Screenshot" width="200" height="359" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SMHamburger.gif" alt="SMHamburger" width="199" height="360" />
+
+Add the follwing files found in the SDKIntegrationSample folder to your project:
+ 	`SMHamburger.h`
+ 	`SMHamburger.m`
+ 	`SMHamburger.xib`
+
+Create a `SMHamburger`.
+	
+	#import "SMHamburger.h"
+
+	@interface YOUR_VIEW_CONTROLLER () {
+		SMHamburger *smBurger;
+	}
+
+	- (void)viewDidLoad {
+
+		// Initialize new SMHamburdger
+		smBurger = [SMHamburger new];
+		smBurger.view.frame = CGRectMake(X_COORDINATE, Y_COORDINATE, smBurger.view.frame.size.width, smBurger.view.frame.size.height);
+	}
+
+	- (void)viewDidAppear:(BOOL)animated {
+		[self.view addSubview: smBurger.view];
+		[smBurger animate];
+	}
+
+	-(void)viewWillDisappear:(BOOL)animated {
+		// OPTIONAL (REMEMBER TO RE ADD THESE BACK im viewDidAppear method of your Controller )
+		[smBurger.view removeFromSuperview];
+
 	}
