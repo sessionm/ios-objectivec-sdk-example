@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -92,7 +93,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="3fG-Us-YJo"/>
                                 </constraints>
-                                <state key="normal" title="Deep Link Banner To Portal">
+                                <state key="normal" title="Deep Link Banner (press and select page)">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -100,12 +101,23 @@
                                     <action selector="pressedDeepLinkBanner:" destination="vXZ-lx-hvc" eventType="touchDown" id="VhN-UN-vu6"/>
                                 </connections>
                             </button>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x0Q-bv-1Qg" customClass="SMDeepLinkListViewController">
+                                <rect key="frame" x="46" y="108" width="228" height="307"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="8IY-oZ-TB7"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="oQd-Q1-Cpu"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="nhJ-F9-6xS" secondAttribute="centerX" id="4vm-rp-6Rt"/>
                             <constraint firstItem="nhJ-F9-6xS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="T7h-Oi-rrI"/>
+                            <constraint firstItem="x0Q-bv-1Qg" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="30" id="a5F-WM-wfd"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="nhJ-F9-6xS" secondAttribute="bottom" id="acy-cC-F0X"/>
+                            <constraint firstItem="nhJ-F9-6xS" firstAttribute="top" secondItem="x0Q-bv-1Qg" secondAttribute="bottom" constant="93" id="b3d-bC-joJ"/>
+                            <constraint firstItem="x0Q-bv-1Qg" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="88" id="h4C-pt-xMO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="x0Q-bv-1Qg" secondAttribute="trailing" constant="30" id="mCU-EY-BpA"/>
                             <constraint firstAttribute="trailing" secondItem="nhJ-F9-6xS" secondAttribute="trailing" id="uyM-Jh-Jey"/>
                         </constraints>
                     </view>
@@ -117,6 +129,7 @@
                         <outlet property="bigGreenButton" destination="PDn-Jh-RFj" id="PcE-sf-Ry3"/>
                         <outlet property="bigPurpleButton" destination="6xg-Bz-U1W" id="kEJ-gt-9hL"/>
                         <outlet property="bigRedButton" destination="T9O-Kq-1Zq" id="3Lu-gf-LBY"/>
+                        <outlet property="portalPagesTable" destination="x0Q-bv-1Qg" id="Ujs-QE-0g3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

@@ -15,6 +15,9 @@
 #import "SMHamburger.h"
 #import "SMNavGiftBox.h"
 #import "SMMultiCastDelegate.h"
+#import "SessionM.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface SMViewController () {
     SMHamburger *smBurger;
@@ -35,8 +38,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"SessionM SDK Sample";
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -73,6 +78,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated  {
+    _portalPagesTable.hidden = TRUE;
     // Add Hamburger Bubble and SMNavGiftBox to the View
     [self.navigationController.view addSubview: smBurger.view];
     [self.navigationController.view addSubview: smNav.view];
@@ -236,8 +242,38 @@
     // !!!!! MAKE SURE THE PROTOCOL is the following format @"sessionm" @"YOUR_API_KEY"
     // !!!!! ALSO ADD IT TO THE URLSchemes under your plist,
     // Refer Apple documentation: https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Inter-AppCommunication/Inter-AppCommunication.html
-    NSURL *sweepStakes = [NSURL URLWithString:@"sessionm7a6cf3f9d1a2016efd1bb5b3a1193a22785480cb://portal"];
-    [[SessionM sharedInstance] handleURL:sweepStakes];
+    
+    portalPageNames = @{
+                        [NSNumber numberWithInt:SMPortalPageHome]: @"Home Feed",
+                        [NSNumber numberWithInt:SMPortalPageAchievements]: @"Achievements List",
+                        [NSNumber numberWithInt:SMPortalPageFeatured]: @"Featured Offers",
+                        [NSNumber numberWithInt:SMPortalPageSweepstakes]: @"Sweepstakes",
+                        [NSNumber numberWithInt:SMPortalPageRewards]: @"Rewards",
+                        [NSNumber numberWithInt:SMPortalPageCharities]: @"Charities"
+                        };
+
+
+    // border radius
+    [_portalPagesTable.layer setCornerRadius:10.0f];
+    
+    // border
+    
+    _portalPagesTable.layer.borderColor = [UIColor orangeColor].CGColor;
+    _portalPagesTable.layer.borderWidth = 1.5f;
+    
+    // drop shadow
+    [_portalPagesTable.layer setShadowColor:[UIColor grayColor].CGColor];
+    [_portalPagesTable.layer setShadowOpacity:0.8];
+    [_portalPagesTable.layer setShadowRadius:3.0];
+    [_portalPagesTable.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    
+    _portalPagesTable.delegate = self;
+    _portalPagesTable.dataSource = self;
+    
+    [_portalPagesTable reloadData];
+    _portalPagesTable.hidden = FALSE;
+    [self.view addSubview: _portalPagesTable];
+    
 }
 
 // Notifies that user info was updated. User info may be different from
@@ -256,6 +292,32 @@
         // International user and SessionM service is unavialable.
         // Here you should hide mPoints integration such as portal buttons.
     }
+}
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return portalPageNames.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    
+    SMPortalPage page = (SMPortalPage)indexPath.item;
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.text = [portalPageNames objectForKey:[NSNumber numberWithInt:page]];
+    cell.contentView.backgroundColor = [UIColor darkGrayColor];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SMPortalPage page = (SMPortalPage)indexPath.item;
+    [[SessionM sharedInstance] openURLForPortalPage:page];
 }
 
 @end

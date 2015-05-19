@@ -12,9 +12,13 @@
 #import "SMCustomAchievementActivity.h"
 #import "SMContainerViewController.h"
 
-@interface SMViewController : UIViewController <SessionMDelegate, UIAlertViewDelegate> {
+@interface SMViewController : UIViewController <SessionMDelegate, UIAlertViewDelegate,UITableViewDataSource,UITableViewDelegate>{
+    
+    NSDictionary *portalPageNames;
+    
 }
 
+@property (weak, nonatomic) IBOutlet UITableView *portalPagesTable;
 @property (nonatomic, weak) IBOutlet UIButton *bigRedButton;
 @property (weak, nonatomic) IBOutlet UIButton *bigPurpleButton;
 @property (nonatomic, weak) IBOutlet UIButton *bigGreenButton;

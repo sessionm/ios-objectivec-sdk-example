@@ -500,6 +500,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SDKIntegrationSample/SDKIntegrationSample-Prefix.pch";
 				INFOPLIST_FILE = "SDKIntegrationSample/SDKIntegrationSample-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -514,6 +515,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SDKIntegrationSample/SDKIntegrationSample-Prefix.pch";
 				INFOPLIST_FILE = "SDKIntegrationSample/SDKIntegrationSample-Info.plist";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
