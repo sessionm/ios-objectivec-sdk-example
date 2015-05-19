@@ -138,7 +138,7 @@ Create a `SMHamburger`.
 	// Pass The indexPath to this method or  
 	// Or just call the Page type where ever you want in the code
 	// [[SessionM sharedInstance] openURLForPortalPage:(enum)SMPortalPage];
-	#import "SessionM"
+	#import "SessionM.h"
 
 	-(void) deepLinkContent: (NSIndexPath *)indexPath{
 		NSDictionary *portalPageNames = @{
