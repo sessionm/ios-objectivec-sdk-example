@@ -138,7 +138,7 @@ void _swizzle_viewWillAppear(id self, SEL _cmd, BOOL animated)
     CGRect rect = CGRectMake(0.0f, 0.0f, ((UIViewController*)self).navigationController.navigationBar.frame.size.width, 64);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
+    if(!context) return;
     CGContextSetFillColorWithColor(context, [[UIColor colorWithRed:0.18 green:0.18 blue:0.18 alpha:1] CGColor]);
     CGContextFillRect(context, rect);
     
