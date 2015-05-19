@@ -14,7 +14,11 @@ For more help see http://www.sessionm.com/documentation/index.php
 * iOS 7.0 or higher
 * ARC
 
-#How to use Animated Gift Box
+- [How to use Animated Gift Box](#how_to_use_animated_giftBox)
+- [How to use the Welcome Screen to educate users on earning mPOINTS](#how_to_use_welcome_screen)
+- [#How to use SMHamburger Bubble](#how_to_use_hamburger_bubble)
+
+## How to use Animated Gift Box
 
 <img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SMNavGiftBox.png" alt="SMNavGiftBox Screenshot" width="200" height="359" />
 <img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SMNavGiftBox.gif" alt="SMNavGiftBox Anima" width="200" height="359" />
@@ -47,7 +51,7 @@ Create a `SMNavGiftBox`.
 
 	}
 
-#How to use the Welcome Screen to educate users on earning mPOINTS
+## How to use the Welcome Screen to educate users on earning mPOINTS
 
 <img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/WelcomeView.png" alt="WelcomeView Screenshot" width="200" height="360" />
 <img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/WelcomeView.gif" alt="WelcomeView Anima" width="200" height="360" />
