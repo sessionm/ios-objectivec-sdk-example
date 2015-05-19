@@ -30,12 +30,10 @@ Create a `SMNavGiftBox`.
 		SMNavGiftBox *smNav;
 	}	
 	
-	- (void)viewDidLoad {
-		
+	- (void)viewDidLoad {		
 		// Initialize new SMNavGiftBox
 		smNav = [SMNavGiftBox new];
 		smNav.view.frame = CGRectMake(X_COORDINATE, Y_COORDINATE, smNav.view.frame.size.width/3, smNav.view.frame.size.height/3);
-
 	}
 
 	- (void)viewDidAppear:(BOOL)animated {
@@ -48,7 +46,11 @@ Create a `SMNavGiftBox`.
     		[smNav.view removeFromSuperview];
 
 	}
+
 #How to use the Welcome Screen to educate users on earning mPOINTS
+
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/WelcomeView.png" alt="WelcomeView Screenshot" width="200" height="360" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/WelcomeView.gif" alt="WelcomeView Anima" width="200" height="360" />
 
 Add the follwing files found in the SDKIntegrationSample folder to your project:
  	`SessionMUIWelcomeViewController.h`
