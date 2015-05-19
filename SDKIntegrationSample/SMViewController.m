@@ -196,7 +196,7 @@
     // we simple use a subclassed SMAchievementActivity which uses a UIAlertView,
     // but any custom view could be used, provided the notifyPresented and
     // notifyDismissed methods are called. See SMCustomAchievementActivity.m.
-    self.customAchievementActivity = [[SMCustomAchievementActivity alloc] initWithAchievmentData:achievementData];
+    self.customAchievementActivity = [[SMCustomAchievementActivity alloc] initWithAchievementData:achievementData];
     self.customAchievementActivity.viewToPresentIn = self.view;
     [self.customAchievementActivity present];
     ((UIButton*)sender).hidden = YES;

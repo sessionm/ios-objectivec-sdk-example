@@ -12,8 +12,8 @@
     UIView *achievementView;
 }
 
--(id)initWithAchievmentData:(SMAchievementData *)theData {
-    if(self = [super initWithAchievmentData:theData]) {
+-(id)initWithAchievementData:(SMAchievementData *)theData {
+    if(self = [super initWithAchievementData:theData]) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:UIApplicationWillResignActiveNotification object:nil];
     }
     return self;
