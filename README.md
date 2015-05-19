@@ -22,8 +22,8 @@ For more help see http://www.sessionm.com/documentation/index.php
 
 ## How to use Animated Gift Box
 
-<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SMNavGiftBox.png" alt="SMNavGiftBox Screenshot" width="200" height="359" />
-<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SMNavGiftBox.gif" alt="SMNavGiftBox Anima" width="200" height="359" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SDKIntegrationSampleImages/SMNavGiftBox.png" alt="SMNavGiftBox Screenshot" width="200" height="359" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SDKIntegrationSampleImages/SMNavGiftBox.gif" alt="SMNavGiftBox Anima" width="200" height="359" />
 
 Add the follwing files found in the SDKIntegrationSample folder to your project:
  	`SMNavGiftBox.h`
@@ -55,8 +55,8 @@ Create a `SMNavGiftBox`.
 
 ## How to use the Welcome Screen to educate users on earning mPOINTS
 
-<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/WelcomeView.png" alt="WelcomeView Screenshot" width="200" height="360" />
-<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/WelcomeView.gif" alt="WelcomeView Anima" width="200" height="360" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SDKIntegrationSampleImages/WelcomeView.png" alt="WelcomeView Screenshot" width="200" height="360" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SDKIntegrationSampleImages/WelcomeView.gif" alt="WelcomeView Anima" width="200" height="360" />
 
 Add the follwing files found in the SDKIntegrationSample folder to your project:
  	`SessionMUIWelcomeViewController.h`
@@ -95,8 +95,8 @@ Create a `SessionMUIWelcomeViewController`.
 
 #How to use SMHamburger Bubble
 
-<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SMHamburger.png" alt="SMHamburger Screenshot" width="200" height="359" />
-<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SMHamburger.gif" alt="SMHamburger" width="199" height="360" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SDKIntegrationSampleImages/SMHamburger.png" alt="SMHamburger Screenshot" width="200" height="359" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SDKIntegrationSampleImages/SMHamburger.gif" alt="SMHamburger" width="199" height="360" />
 
 Add the follwing files found in the SDKIntegrationSample folder to your project:
  	`SMHamburger.h`
@@ -131,9 +131,9 @@ Create a `SMHamburger`.
 
 ## How to Deep Link into Rewards Portal Content
 
-<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/deepLink1.png" alt="deepLink1 Screenshot" width="200" height="359" />
-<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/deepLink2.png" alt="deepLink2 Screenshot" width="200" height="359" />
-<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/deepLink.gif" alt="deepLink" width="199" height="360" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SDKIntegrationSampleImages/deepLink1.png" alt="deepLink1 Screenshot" width="200" height="359" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SDKIntegrationSampleImages/deepLink2.png" alt="deepLink2 Screenshot" width="200" height="359" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SDKIntegrationSampleImages/deepLink.gif" alt="deepLink" width="199" height="360" />
 
 	// Pass The indexPath to this method or  
 	// Or just call the Page type where ever you want in the code
@@ -149,7 +149,7 @@ Create a `SMHamburger`.
 				[NSNumber numberWithInt:SMPortalPageRewards]: @"Rewards",
 				[NSNumber numberWithInt:SMPortalPageCharities]: @"Charities"
 		};
-
+		NSLog([portalPageNames objectForKey:[NSNumber numberWithInt:page]]);
 		SMPortalPage page = (SMPortalPage)indexPath.item;
 		[[SessionM sharedInstance] openURLForPortalPage:page];
 	}
