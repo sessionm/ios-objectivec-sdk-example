@@ -18,6 +18,7 @@ For more help see http://www.sessionm.com/documentation/index.php
 - [How to use Animated Gift Box](#how_to_use_animated_giftBox)
 - [How to use the Welcome Screen to educate users on earning mPOINTS](#how-to-use-the-welcome-screen-to-educate-users-on-earning-mpoints)
 - [How to use SMHamburger Bubble](#how-to-use-smhamburger-bubble)
+- [How to Deep Link into Rewards Portal Content](#how-to-deep-link-into-rewards-portal-content)
 
 ## How to use Animated Gift Box
 
@@ -126,4 +127,29 @@ Create a `SMHamburger`.
 		// OPTIONAL (REMEMBER TO RE ADD THESE BACK im viewDidAppear method of your Controller )
 		[smBurger.view removeFromSuperview];
 
+	}
+
+## How to Deep Link into Rewards Portal Content
+
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/deepLink1.png" alt="deepLink1 Screenshot" width="200" height="359" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/deepLink2.png" alt="deepLink2 Screenshot" width="200" height="359" />
+<img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/deepLink.gif" alt="deepLink" width="199" height="360" />
+
+	// Pass The indexPath to this method or  
+	// Or just call the Page type where ever you want in the code
+	// [[SessionM sharedInstance] openURLForPortalPage:(enum)SMPortalPage];
+	#import "SessionM"
+
+	-(void) deepLinkContent: (NSIndexPath *)indexPath{
+		NSDictionary *portalPageNames = @{
+				[NSNumber numberWithInt:SMPortalPageHome]: @"Home Feed",
+				[NSNumber numberWithInt:SMPortalPageAchievements]: @"Achievements List",
+				[NSNumber numberWithInt:SMPortalPageFeatured]: @"Featured Offers",
+				[NSNumber numberWithInt:SMPortalPageSweepstakes]: @"Sweepstakes",
+				[NSNumber numberWithInt:SMPortalPageRewards]: @"Rewards",
+				[NSNumber numberWithInt:SMPortalPageCharities]: @"Charities"
+		};
+
+		SMPortalPage page = (SMPortalPage)indexPath.item;
+		[[SessionM sharedInstance] openURLForPortalPage:page];
 	}
