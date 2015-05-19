@@ -101,7 +101,7 @@
                                     <action selector="pressedDeepLinkBanner:" destination="vXZ-lx-hvc" eventType="touchDown" id="VhN-UN-vu6"/>
                                 </connections>
                             </button>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x0Q-bv-1Qg" customClass="SMDeepLinkListViewController">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x0Q-bv-1Qg">
                                 <rect key="frame" x="46" y="108" width="228" height="307"/>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="8IY-oZ-TB7"/>
