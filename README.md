@@ -18,7 +18,9 @@ For more help see http://www.sessionm.com/documentation/index.php
 - [How to use Animated Gift Box](#how_to_use_animated_giftBox)
 - [How to use the Welcome Screen to educate users on earning mPOINTS](#how-to-use-the-welcome-screen-to-educate-users-on-earning-mpoints)
 - [How to use SMHamburger Bubble](#how-to-use-smhamburger-bubble)
+- [How to handle User Opt out to hide Show UI](#How-to-handle-User-Opt-out-to-hide-Show-UI)
 - [How to Deep Link into Rewards Portal Content](#how-to-deep-link-into-rewards-portal-content)
+- [How to use a Multicast Delegate](#How-to-use-a-Multicast-Delegate)
 
 ## How to use Animated Gift Box
 
@@ -93,7 +95,7 @@ Create a `SessionMUIWelcomeViewController`.
 		welcomeView = [[SessionMUIWelcomeViewController alloc] init];
 	}
 
-#How to use SMHamburger Bubble
+## How to use SMHamburger Bubble
 
 <img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SDKIntegrationSampleImages/SMHamburger.png" alt="SMHamburger Screenshot" width="200" height="359" />
 <img src="https://github.com/sessionm/ios-objectivec-sdk-example/raw/master/SDKIntegrationSampleImages/SMHamburger.gif" alt="SMHamburger" width="199" height="360" />
@@ -128,6 +130,8 @@ Create a `SMHamburger`.
 		[smBurger.view removeFromSuperview];
 
 	}
+## How to handle User Opt out to hide Show UI
+
 
 ## How to Deep Link into Rewards Portal Content
 
@@ -153,3 +157,40 @@ Create a `SMHamburger`.
 		SMPortalPage page = (SMPortalPage)indexPath.item;
 		[[SessionM sharedInstance] openURLForPortalPage:page];
 	}
+
+## How to use a Multicast Delegate 
+
+`SMMultiDelgate` is way to Handle Multiple delegate references
+For example you may end up using multiple controllers on the same view, but setting
+the delegate twice you may loose refrence to the first. Use a multicasting methodolgy:
+
+        // Set the delegate so we get notified from the SDK to MutlicastDelegate instance
+        // [[SessionM sharedInstance] setDelegate:[SMMulticastDelegate sharedInstance]];
+
+       #import "SMMultiCastDelegate.h"
+
+       @implementation YourAppDelegate
+
+       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+       {
+         [[SessionM sharedInstance] setDelegate:[SMMulticastDelegate sharedInstance]];
+         // Init the SDK
+         SMStart(YOUR_APP_ID);
+         return YES;
+       }
+
+
+       // Instead of Assigning Delegate directly to SessionM use SMMutliDelegate instead
+       #import "SMMultiCastDelegate.h"
+
+       @implementation YourViewControllers
+
+       - (void)viewDidLoad {
+         [super viewDidLoad];
+    
+         //[[SessionM sharedInstance] setDelegate:self];
+    
+         // WE USE OUR OWN CUSTOM DELEGATE MULTICASTER INSTEAD TO SHOW SOME
+         // ADVANCED CAPABILITIES
+         [[SMMulticastDelegate sharedInstance] addDelegate:self];
+        }
