@@ -1,6 +1,6 @@
 PODS:
   - MFSideMenu (0.5.5)
-  - SessionM (1.14.4)
+  - SessionM (1.14.6)
 
 DEPENDENCIES:
   - MFSideMenu
@@ -8,6 +8,6 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   MFSideMenu: 268122e6894f2747fc3a2b48578100b232506c60
-  SessionM: ce920710c0fb4e39065a5176acb59c75147352f5
+  SessionM: d406ca13b34f4ee241c472ed308a35ce64767dcb
 
 COCOAPODS: 0.37.1

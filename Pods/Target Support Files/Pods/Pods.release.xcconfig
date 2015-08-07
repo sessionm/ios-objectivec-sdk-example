@@ -1,7 +1,7 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/MFSideMenu" "${PODS_ROOT}/Headers/Public/SessionM"
-LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/SessionM/**" "$(PODS_ROOT)/SessionM/SessionM_iOS_v1.14.4_Release/SessionM-SDK"
+LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/SessionM/**" "$(PODS_ROOT)/SessionM/SessionM_iOS_v1.14.6_Release/SessionM-SDK"
 OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/MFSideMenu" -isystem "${PODS_ROOT}/Headers/Public/SessionM"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"Pods-MFSideMenu" -l"SessionM.1.14.4" -framework "AVFoundation" -framework "AdSupport" -framework "CoreData" -framework "CoreGraphics" -framework "CoreMedia" -framework "EventKit" -framework "EventKitUI" -framework "Foundation" -framework "ImageIO" -framework "QuartzCore" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration" -framework "UIKit"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"Pods-MFSideMenu" -l"SessionM.1.14.6" -framework "AVFoundation" -framework "AdSupport" -framework "CoreData" -framework "CoreGraphics" -framework "CoreMedia" -framework "EventKit" -framework "EventKitUI" -framework "Foundation" -framework "ImageIO" -framework "QuartzCore" -framework "Security" -framework "StoreKit" -framework "SystemConfiguration" -framework "UIKit"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods
