@@ -18,7 +18,7 @@ For more help see http://www.sessionm.com/documentation/index.php
 - [How to use Animated Gift Box](#how_to_use_animated_giftBox)
 - [How to use the Welcome Screen to educate users on earning mPOINTS](#how-to-use-the-welcome-screen-to-educate-users-on-earning-mpoints)
 - [How to use SMHamburger Bubble](#how-to-use-smhamburger-bubble)
-- [How to handle User OptOut Status to hide or show UI](#How-to-handle-User-OptOut-Status-to-hide-or-show-UI)
+- [How to use user OptOut Status to hide or show UI](#How-to-use-user-OptOut-Status-to-hide-or-show-UI)
 - [How to Deep Link into Rewards Portal Content](#how-to-deep-link-into-rewards-portal-content)
 - [How to use a Multicast Delegate](#How-to-use-a-Multicast-Delegate)
 
@@ -131,7 +131,8 @@ Create a `SMHamburger`.
 
 	}
 
-## How to handle User OptOut Status to hide or show UI
+## How to use user OptOut Status to hide or show UI
+
 SessionM mPOINTS user can opt into or out of the program anytime. The SDK while doing such in Opted Out state stops communication with our service, it keeps a local state of which you can use to hide/show SessionM related UI accordingly. You can get this state from the following Boolean from the API --- [SessionM sharedInstance].user.isOptedOut
 
 	#pragma mark - Update UI
