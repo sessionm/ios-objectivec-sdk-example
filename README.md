@@ -18,7 +18,7 @@ For more help see http://www.sessionm.com/documentation/index.php
 - [How to use Animated Gift Box](#how_to_use_animated_giftBox)
 - [How to use the Welcome Screen to educate users on earning mPOINTS](#how-to-use-the-welcome-screen-to-educate-users-on-earning-mpoints)
 - [How to use SMHamburger Bubble](#how-to-use-smhamburger-bubble)
-- [How to handle User Opt out to hide Show UI](#How-to-handle-User-Opt-out-to-hide-Show-UI)
+- [How to handle User OptOut Status to hide or show UI](#How-to-handle-User-OptOut-status-to-hide-or-show-UI)
 - [How to Deep Link into Rewards Portal Content](#how-to-deep-link-into-rewards-portal-content)
 - [How to use a Multicast Delegate](#How-to-use-a-Multicast-Delegate)
 
@@ -130,8 +130,58 @@ Create a `SMHamburger`.
 		[smBurger.view removeFromSuperview];
 
 	}
-## How to handle User Opt out to hide Show UI
 
+## How to handle User OptOut Status to hide or show UI
+SessionM mPOINTS user can opt into or out of the program anytime. The SDK while doing such in Opted Out state stops communication with our service, it keeps a local state of which you can use to hide/show SessionM related UI accordingly. You can get this state from the following Boolean from the API --- [SessionM sharedInstance].user.isOptedOut
+
+	#pragma mark - Update UI
+
+	// UI refresh method showing how you can change UI based
+	// on SessionM state or if a user has opted in or out.
+	- (void)updateUI:(SessionMState)state  {
+    		// Setup UI based on opt-in status
+    		if ([SessionM sharedInstance].user.isOptedOut) {
+        		[self updateMyViewForOptOutStatus];
+   		} else {
+        		[self updateMyViewForOptInStatus];
+    		}
+
+    
+		// Setup UI based on if SessionM state
+ 		if (state == SessionMStateStartedOnline) {
+    			// Set Up Stuff when Session is Online 
+		} else {
+        	        // Disable UI
+		}
+	}
+
+Here is an Example of the use of OptIn OptOut status for `SMHamburger` and `SMNavGiftBox`
+
+	# pragma mark - Handling SessionM OptIn OptOut
+	- (void) updateMyViewForOptInStatus{
+    
+		// Add the SMHamburger View
+		if(![smBurger.view isDescendantOfView:self.navigationController.view]) {
+			[self.navigationController.view addSubview: smBurger.view];
+			[smBurger animate];
+		} else {
+			smBurger.view.hidden = NO;
+		}
+    
+    		// Add the SMNavGiftBox View
+		if(![smNav.view isDescendantOfView:self.navigationController.view]) {
+			[self.navigationController.view addSubview: smNav.view];
+			[smNav animate];
+		} else {
+			smNav.view.hidden = NO;
+		}
+	}
+
+	- (void) updateMyViewForOptOutStatus{
+		[self.bigGreenButton setTitle:@"OptedOut" forState:UIControlStateNormal];
+		[smBurger.view removeFromSuperview];
+		[smNav.view removeFromSuperview];
+	}
 
 ## How to Deep Link into Rewards Portal Content
 
