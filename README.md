@@ -20,7 +20,7 @@ For more help see http://www.sessionm.com/documentation/index.php
 - [How to use SMHamburger Bubble](#how-to-use-smhamburger-bubble)
 - [How to use user OptOut Status to hide or show UI](#how-to-use-user-optout-status-to-hide-or-show-ui)
 - [How to Deep Link into Rewards Portal Content](#how-to-deep-link-into-rewards-portal-content)
-- [How to use a Multicast Delegate](#How-to-use-a-Multicast-Delegate)
+- [How to use a Multicast Delegate](#how-to-use-a-multicast-delegate)
 
 ## How to use Animated Gift Box
 
