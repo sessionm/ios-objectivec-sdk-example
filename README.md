@@ -160,7 +160,7 @@ Create a `SMHamburger`.
 
 ## How to use a Multicast Delegate 
 
-`SMMultiDelgate` is way to Handle Multiple delegate references
+`SMMultiDelegate` is way to Handle Multiple delegate references
 For example you may end up using multiple controllers on the same view, but setting
 the delegate twice you may loose refrence to the first. Use a multicasting methodolgy:
 

@@ -80,17 +80,15 @@
 -(void)viewDidAppear:(BOOL)animated  {
     _portalPagesTable.hidden = TRUE;
     // Add Hamburger Bubble and SMNavGiftBox to the View
-    [self.navigationController.view addSubview: smBurger.view];
-    [self.navigationController.view addSubview: smNav.view];
-    [smBurger animate];
-    [smNav animate];
+    [self updateUI:[SessionM sharedInstance].sessionState];
     [self.containerVC setPanMode:MFSideMenuPanModeDefault];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     // OPTIONAL (REMEMBER TO RE ADD THESE BACK im viewDidAppear method of your Controller )
-    [smBurger.view removeFromSuperview];
-    [smNav.view removeFromSuperview];
+    [self updateUI:[SessionM sharedInstance].sessionState];
+    smBurger.view.hidden = YES;
+    smNav.view.hidden = YES;
 
 }
 
@@ -126,39 +124,6 @@
 
 
 
-
-#pragma mark - Update UI
-
-// UI refresh method showing how you can change UI based
-// on SessionM state or if a user has opted in or out.
-- (void)updateUI:(SessionMState)state  {
-    // Setup UI based on opt-in status
-    if ([SessionM sharedInstance].user.isOptedOut) {
-        [self.bigGreenButton setTitle:@"OptedOut" forState:UIControlStateNormal];
-    } else {
-        [self.bigGreenButton setTitle:@"Portal" forState:UIControlStateNormal];
-    }
-    self.memberSwitch.on = ![SessionM sharedInstance].user.isOptedOut;
-    
-    // Setup UI based on if SessionM state
-    if (state == SessionMStateStartedOnline) {
-        self.bigGreenButton.enabled = YES;
-    } else {
-        self.bigGreenButton.enabled = NO;
-    }
-    
-    // Setup UI based on unclaimedAchievement data. Achievement
-    // must be setup as Native Display in dev portal for this
-    // function properly.
-    SMAchievementData *unclaimedAchievementData =
-    [SessionM sharedInstance].unclaimedAchievement;
-    if (unclaimedAchievementData) {
-        self.bigBlueButton.hidden = NO;
-    } else {
-        self.bigBlueButton.hidden = YES;
-    }
-
-}
 
 
 #pragma mark - IBActions
@@ -280,6 +245,7 @@
 // time SessionM state goes online, therefore important to setup this delegate as well.
 - (void)sessionM:(SessionM *)sessionM didUpdateUser:(SMUser *)user {
     [self updateUI:[SessionM sharedInstance].sessionState];
+    
 }
 
 // Refreshes UI after achievement activity dismiss.
@@ -294,6 +260,68 @@
     }
 }
 
+#pragma mark - Update UI
+
+// UI refresh method showing how you can change UI based
+// on SessionM state or if a user has opted in or out.
+- (void)updateUI:(SessionMState)state  {
+    // Setup UI based on opt-in status
+    if ([SessionM sharedInstance].user.isOptedOut) {
+        [self updateMyViewForOptOutStatus];
+    } else {
+        [self updateMyViewForOptInStatus];
+    }
+    self.memberSwitch.on = ![SessionM sharedInstance].user.isOptedOut;
+    
+    // Setup UI based on if SessionM state
+    if (state == SessionMStateStartedOnline) {
+        self.bigGreenButton.enabled = YES;
+    } else {
+        self.bigGreenButton.enabled = NO;
+    }
+    
+    // Setup UI based on unclaimedAchievement data. Achievement
+    // must be setup as Native Display in dev portal for this
+    // function properly.
+    SMAchievementData *unclaimedAchievementData =
+    [SessionM sharedInstance].unclaimedAchievement;
+    if (unclaimedAchievementData) {
+        self.bigBlueButton.hidden = NO;
+    } else {
+        self.bigBlueButton.hidden = YES;
+    }
+    
+}
+
+
+
+# pragma mark - Handling SessionM OptIn OptOut
+-(void) updateMyViewForOptInStatus{
+    [self.bigGreenButton setTitle:@"Portal" forState:UIControlStateNormal];
+    
+    // Add the SMHamburger View
+    if(![smBurger.view isDescendantOfView:self.navigationController.view]) {
+        [self.navigationController.view addSubview: smBurger.view];
+        [smBurger animate];
+    } else {
+        smBurger.view.hidden = NO;
+    }
+    
+    // Add the SMNavGiftBox View
+    if(![smNav.view isDescendantOfView:self.navigationController.view]) {
+        [self.navigationController.view addSubview: smNav.view];
+        [smNav animate];
+    } else {
+        smNav.view.hidden = NO;
+    }
+
+}
+
+- (void) updateMyViewForOptOutStatus{
+    [self.bigGreenButton setTitle:@"OptedOut" forState:UIControlStateNormal];
+    [smBurger.view removeFromSuperview];
+    [smNav.view removeFromSuperview];
+}
 
 #pragma mark - Table view data source
 

@@ -33,6 +33,11 @@
 - (IBAction)memberSwitchAction:(id)sender;
 
 - (void)updateUI:(SessionMState)state;
+- (void) updateMyViewForOptInStatus;
+- (void) updateMyViewForOptOutStatus;
+
 - (void)sessionM:(SessionM *)session didTransitionToState:(SessionMState)state;
+
+
 
 @end
